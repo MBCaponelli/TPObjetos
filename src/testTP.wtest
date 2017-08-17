@@ -1,0 +1,18 @@
+import example.*
+test "si Joaquin canta en un grupo, su habilidad es 25" {
+
+	assert.equals(joaquin.habilidad(), 25)
+}
+
+test "Si joaquin decide ser solista, su habilidad es 20"{
+	joaquin.nuevaBanda(null)
+	assert.equals(joaquin.habilidad(),20)
+}
+
+test "Joaquin no interpreta bien la cancion la Familia"{
+	assert.equals(joaquin.interpreta(laFamilia), false)
+}
+
+test "Joaquin interpreta bien la cancion Cisne"{
+	assert.equals(joaquin.interpreta(cisne), true)
+}
