@@ -1,13 +1,17 @@
-/** First Wollok example */
+
 object joaquin {
-	var banda = "Pimpinela"
+	var banda = "pimpinela"
 	var habilidad = 20
-	method banda()= banda
-	method banda(nuevaBanda) {
-		banda=nuevaBanda
-	}
-	method habilidad()= habilidad
 	method sumarHabilidad(habilidadagregada){
-		habilidad+=habilidadagregada
+		habilidad+=habilidadagregada}
+	method habilidad(){
+		if(banda==0)
+		{return habilidad}
+		else
+		{self.sumarHabilidad(5)
+			return habilidad
+		}
 	}
+	method interpreta(cancion)= cancion.duracion()>300
+	
 }
