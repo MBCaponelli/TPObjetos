@@ -10,7 +10,7 @@ object joaquin {
 	}
 	
 
-	method cobra(lugar){
+	method cobra(){
 		if(banda==null)
 		{return (cobra*2)}
 		else 
@@ -72,24 +72,17 @@ object lucia
 	method interpreta(cancion)=cancion.letra().contains("familia")
 }
 object lunaPark{
-	const fecha = "Jueves" 			/* 20/04/2017*/ 								
 	var capacidad= 9290
-	method fecha()=fecha
 	method capacidad() = capacidad
 }
 object trastienda{
-	const fecha = "Miercoles"		/*15/11/2017*/
 	var capacidad=400
-	method fecha()=fecha
-	method capacidad(){
-		if(fecha!="Sabado")	
-			{return capacidad}
-		else return (capacidad+300)
-		}
 	method capacidad(dia){
-		if(dia=="Sabado")
-			{return capacidad}
-		else return (capacidad+300)
+		if(dia=="sabado")
+		{
+			return (capacidad+300)
+		}else{
+			return capacidad
 		}
-	
+	}
 } 
