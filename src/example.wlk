@@ -72,17 +72,19 @@ object lucia
 	method interpreta(cancion)=cancion.letra().contains("familia")
 }
 object lunaPark{
+	const fecha = "Jueves" 			/* 20/04/2017*/ 								
 	var capacidad= 9290
+	method fecha()=fecha
 	method capacidad() = capacidad
 }
 object trastienda{
+	const fecha = "Miercoles"		/*15/11/2017*/
 	var capacidad=400
-	method capacidad(dia){
-		if(dia=="sabado")
-		{
-			return (capacidad+300)
-		}else{
-			return capacidad
+	method fecha()=fecha
+	method capacidad(){
+		if(fecha!="Sabado")	
+			{return capacidad}
+		else return (capacidad+300)
 		}
-	}
+	
 } 
