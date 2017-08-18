@@ -10,7 +10,7 @@ object joaquin {
 	}
 	
 
-	method cobra(){
+	method cobra(lugar){
 		if(banda==null)
 		{return (cobra*2)}
 		else 
@@ -83,6 +83,11 @@ object trastienda{
 	method fecha()=fecha
 	method capacidad(){
 		if(fecha!="Sabado")	
+			{return capacidad}
+		else return (capacidad+300)
+		}
+	method capacidad(dia){
+		if(dia=="Sabado")
 			{return capacidad}
 		else return (capacidad+300)
 		}
