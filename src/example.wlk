@@ -20,7 +20,7 @@ object joaquin {
 
 	method sumarHabilidad(habilidadagregada){
 		habilidad+=habilidadagregada}
-	method habilidadNueva(habilidadNueva){habilidad=habilidadNueva}
+	method habilidadNueva(habilidadNueva){habilidad=habilidadNueva} 
 	method habilidad(){
 		if(banda==null)
 		{return habilidad}
@@ -41,4 +41,33 @@ object cisne{
 object laFamilia{
 	method letra()="Quiero brindar por mi gente sencilla, por el amor brindo por la familia"
 	method duracion()=264
+}
+
+object lucia
+{
+	var banda = "Pimpinela"
+	var habilidad = 70
+	var cobra=500
+	method banda()= banda
+	method nuevaBanda(nuevaBanda) {
+		banda=nuevaBanda
+	}
+	method habilidad(){
+		if(banda!=null)
+		{
+			return (habilidad-20)
+		}else{
+			return habilidad
+		}
+	}
+	method cobro(lugar){
+		if(lugar.capacidad()>5000)
+		{
+			return 500
+		}
+		else{
+			return 400
+		}
+	}
+	method interpreta(cancion)=cancion.letra().coleccioncontains("familia")
 }
