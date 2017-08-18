@@ -25,12 +25,19 @@ test "si lucia canta en un grupo, pero se va de solista su habilidad es 70" {
 	lucia.nuevaBanda(null)
 	assert.equals(lucia.habilidad(), 70)
 }
-test "la capasidad de la trastienda el 5 de agosto es 700"{
-	assert.equals(trastienda.capacidad("sabado"),700)
+test "la capacidad de la trastienda el 5 de agosto es 700"{
+	assert.equals(trastienda.capacidad("Sabado"),700)
 }
-test "la capasidad de la trastienda el 8 de agosto es 400"{
+test "la capacidad de la trastienda el 8 de agosto es 400"{
 	assert.equals(trastienda.capacidad("martes"),400)
 }
 test "lucia cobra 500 por un luna Park"{
 	assert.equals(lucia.cobra(lunaPark),500)
+}
+test "Lucia interpreta bien la cancion La familia "{
+	assert.equals(lucia.interpreta(laFamilia), true)
+}
+test "Si Joaquin canta solo en el trastienda, cobra 100"{
+	joaquin.nuevaBanda(null)
+	assert.equals(joaquin.cobra(trastienda), 100)
 }
