@@ -16,3 +16,21 @@ test "Joaquin no interpreta bien la cancion la Familia"{
 test "Joaquin interpreta bien la cancion Cisne"{
 	assert.equals(joaquin.interpreta(cisne), true)
 }
+test "si lucia canta en un grupo, su habilidad es 50" {
+
+	assert.equals(lucia.habilidad(), 50)
+}
+test "si lucia canta en un grupo, pero se va de solista su habilidad es 70" {
+
+	lucia.nuevaBanda(null)
+	assert.equals(lucia.habilidad(), 70)
+}
+test "la capasidad de la trastienda el 5 de agosto es 700"{
+	assert.equals(trastienda.capacidad("sabado"),700)
+}
+test "la capasidad de la trastienda el 8 de agosto es 400"{
+	assert.equals(trastienda.capacidad("martes"),400)
+}
+test "lucia cobra 500 por un luna Park"{
+	assert.equals(lucia.cobra(lunaPark),500)
+}
