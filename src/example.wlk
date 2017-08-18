@@ -60,14 +60,14 @@ object lucia
 			return habilidad
 		}
 	}
-	method cobro(lugar){
+	method cobra(lugar){
 		if(lugar.capacidad()>5000)
 		{
-			return 500
+			return cobra
 		}
 		else{
-			return 400
+			return (cobra-100)
 		}
 	}
-	method interpreta(cancion)=cancion.letra().coleccioncontains("familia")
+	method interpreta(cancion)=cancion.letra().contains("familia")
 }
