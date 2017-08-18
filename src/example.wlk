@@ -71,3 +71,18 @@ object lucia
 	}
 	method interpreta(cancion)=cancion.letra().contains("familia")
 }
+object lunaPark{
+	var capacidad= 9290
+	method capacidad() = capacidad
+}
+object trastienda{
+	var capacidad=400
+	method capacidad(dia){
+		if(dia=="sabado")
+		{
+			return (capacidad+300)
+		}else{
+			return capacidad
+		}
+	}
+} 
