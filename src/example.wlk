@@ -99,6 +99,7 @@ object trastienda{
 		else return (capacidad)
 		}
 	
+	
 } 
 object luisAlberto{
 	var guitarra=fender
