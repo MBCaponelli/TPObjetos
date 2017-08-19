@@ -16,7 +16,6 @@ object joaquin {
 		{return cobra}
 	}
 	
-
 	method sumarHabilidad(habilidadagregada){
 		habilidad+=habilidadagregada}
 	method habilidadNueva(habilidadNueva){habilidad=habilidadNueva} 
