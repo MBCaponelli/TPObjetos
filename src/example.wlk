@@ -16,6 +16,7 @@ object joaquin {
 		{return cobra}
 	}
 	
+	
 	method sumarHabilidad(habilidadagregada){
 		habilidad+=habilidadagregada}
 	method habilidadNueva(habilidadNueva){habilidad=habilidadNueva} 
@@ -29,6 +30,7 @@ object joaquin {
 	method interpreta(cancion)= cancion.duracion()>300
 	
 }
+
 
 
 object cisne{
