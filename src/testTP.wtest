@@ -41,3 +41,47 @@ test "Si Joaquin canta solo en el trastienda, cobra 100"{
 	joaquin.nuevaBanda(null)
 	assert.equals(joaquin.cobra(trastienda), 100)
 }
+
+
+test "Lucia interpreta mal la cancion cisne "{
+	assert.equals(lucia.interpreta(cisne), false)
+}
+test "si luis Alberto toca una fender su habilidad es 80"{
+	assert.equals(luisAlberto.habilidad(),80)
+}
+test "si luis Alberto toca una gibson sana su habilidad es 100"{
+	luisAlberto.nuevaGuitarra(gibson)
+	assert.equals(luisAlberto.habilidad(),100)
+}
+test "si luis Alberto toca una gibson en mal estado su habilidad es 40"{
+	gibson.nuevoEstado("feo")
+	luisAlberto.nuevaGuitarra(gibson)
+	assert.equals(luisAlberto.habilidad(),40)
+}
+test "Luis Alberto interpreta bien la cancion La familia "{
+	assert.equals(luisAlberto.interpreta(laFamilia), true)
+}
+test "Luis Alberto interpreta bien la cancion cisne "{
+	assert.equals(luisAlberto.interpreta(cisne), true)
+}
+test "si joaquin toca en el luna (grupal) cobra 50"{
+	assert.equals(joaquin.cobra(lunaPark),50)
+}
+test "lucia cobre 400 por la trastienda"{
+	assert.equals(lucia.cobra(trastienda),400)
+}
+test "luis Alberto cobra 1000 por un luna"{
+	assert.equals(luisAlberto.cobra("lunaPark"),1000)
+}
+test "luis Alberto cobra 1200 por trastienda"{
+	assert.equals(luisAlberto.cobra("trastienda"),1200)
+}
+test "el costo total del luna es de 1550"
+{
+	assert.equals(luisAlberto.cobra("lunaPark")+lucia.cobra(lunaPark)+joaquin.cobra(lunaPark),1550)
+}
+test "el costo total de la trastienda es de 1650"
+{
+	assert.equals(luisAlberto.cobra("trastienda")+lucia.cobra(trastienda)+joaquin.cobra(trastienda),1650)
+	}
+

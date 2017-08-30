@@ -1,4 +1,3 @@
-
 object joaquin {
 	var banda = "Pimpinela"
 	var habilidad = 20
@@ -17,7 +16,7 @@ object joaquin {
 		{return cobra}
 	}
 	
-
+	
 	method sumarHabilidad(habilidadagregada){
 		habilidad+=habilidadagregada}
 	method habilidadNueva(habilidadNueva){habilidad=habilidadNueva} 
@@ -31,6 +30,7 @@ object joaquin {
 	method interpreta(cancion)= cancion.duracion()>300
 	
 }
+
 
 
 object cisne{
@@ -97,41 +97,43 @@ object trastienda{
 	method capacidad(dia){
 		if(dia=="Sabado")
 			{return capacidad+300}
-		else return (capacidad)
+		else {return (capacidad)}
 		}
-	
+
 } 
-object luisAlberto{
-	var guitarra=fender
-	var cobra=1000
-	method guitarra()=guitarra
-	method nuevaGuitarra(guitarraNueva){guitarra=guitarraNueva}
-	method precioGuitarra()= guitarra.precio()
-	method habilidad() {if((guitarra.precio()*8)<100) {return guitarra.precio()*8}
-						else {return 100}}
-	method interpreta(cancion)=true
-	method cobra(lugar)=cobra}
-object fender{
-	const precio = 10
-	method precio()=precio
+object luisAlberto{ 
+  var guitarra=fender 
+  var cobra=1000 
+  method guitarra()=guitarra 
+  method nuevaGuitarra(guitarraNueva){guitarra=guitarraNueva} 
+  method precioGuitarra()= guitarra.precio() 
+  method habilidad() {if((guitarra.precio()*8)<100) {return guitarra.precio()*8} 
+            else {return 100}} 
+  method interpreta(cancion)=true 
+  method cobra(lugar)=cobra} 
+object fender{ 
+  const precio = 10 
+  method precio()=precio 
+} 
+object gibson{ 
+  var precio = 15 
+  var estado = "sana" 
+  method precio(){ 
+    if(estado=="sana"){ 
+      self.nuevoPrecio(15) 
+      return precio 
+    } 
+    else{ 
+      self.nuevoPrecio(5) 
+      return precio 
+         } 
+     
+  } 
+  method nuevoPrecio(nuevoprecio){ 
+    precio=nuevoprecio 
+  } 
+  method estado()=estado 
+  method nuevoEstado(estadoNuevo){estado=estadoNuevo} 
 }
-object gibson{
-	var precio = 15
-	var estado = "sana"
-	method precio(){
-		if(estado=="sana"){
-			self.nuevoPrecio(15)
-			return precio
-		}
-		else{
-			self.nuevoPrecio(5)
-			return precio
-		}
-		
-	}
-	method nuevoPrecio(nuevoprecio){
-		precio=nuevoprecio
-	}
-	method estado()=estado
-	method nuevoEstado(estadoNuevo){estado=estadoNuevo}
-}
+      
+      
