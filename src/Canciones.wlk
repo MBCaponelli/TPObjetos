@@ -3,7 +3,7 @@ import example.*
 
 class Cancion {
 var letra
-var duracion
+var duracion=0
 method letra()=letra
 method letra(letraDeCancion){
 	letra=letraDeCancion

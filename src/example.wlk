@@ -79,33 +79,6 @@ object luisAlberto{
 
 
 
-/*ESPECTACULOS */
-object lunaPark{
-	var cantantes=[luisAlberto,joaquin, lucia]
-	const fecha = new Date (20,04,2017) 									
-	var capacidad= 9290
-	method cantantes() = cantantes
-	method cantantes(losCantantes){cantantes = losCantantes}
-	method fecha()=fecha
-	method capacidad() = capacidad
-	method cobra()=return cantantes.map({persona =>persona.cobra(self)}).sum()
-}
-object trastienda{
-	var cantantes=[luisAlberto,joaquin, lucia]
-	const fecha =new Date(15,11,2017)	/*15/11/2017*/
-	var capacidad=400
-	method cantantes() = cantantes
-	method cantantes(losCantantes){cantantes = losCantantes}
-	method fecha()=fecha
-	method capacidad(){
-		if((self.fecha().dayOfWeek())!=6)	
-			{return capacidad}
-		else return (capacidad+300)
-		}
-	method cobra()=return cantantes.map({persona =>persona.cobra(self)}).sum()
-	
-
-} 
 
 
       
