@@ -1,8 +1,11 @@
 import example.*
 import Canciones.*
+import guitarras.*
 describe "tests entrega 1"{
 	const cisne
 	const laFamilia
+	const fender
+	const gibson
 	fixture{
 		cisne = new Cancion()
 		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
@@ -11,6 +14,9 @@ describe "tests entrega 1"{
 		laFamilia=new Cancion()
 		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		laFamilia.duracion(264)
+		
+		fender= new Fender()
+		gibson = new Gibson()
 	}
 test "si Joaquin canta en un grupo, su habilidad es 25" {
 

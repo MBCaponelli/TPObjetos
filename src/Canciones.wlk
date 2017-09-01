@@ -1,3 +1,5 @@
+import guitarras.*
+import example.*
 
 class Cancion {
 var letra

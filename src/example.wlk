@@ -1,4 +1,5 @@
 import Canciones.*
+import guitarras.*
 /*PERSONAS */
 object joaquin {
 	var banda = "Pimpinela"
@@ -61,10 +62,13 @@ object lucia
 	method interpreta(cancion)=cancion.letra().contains("familia")
 }
 object luisAlberto{ 
-  var guitarra=fender 
+  var guitarra=fender
+  const fender = new Fender()
   var cobra=1000 
   method guitarra()=guitarra 
-  method nuevaGuitarra(guitarraNueva){guitarra=guitarraNueva} 
+  method nuevaGuitarra(guitarraNueva){
+  	guitarra=guitarraNueva
+  } 
   method precioGuitarra()= guitarra.precio() 
   method habilidad() {if((guitarra.precio()*8)<100) {return guitarra.precio()*8} 
             else {return 100}} 
@@ -103,33 +107,5 @@ object trastienda{
 
 } 
 
-/*GUITARRAS */
-object fender{ 
-  var precio = 10 
-  method precio()=precio 
-  method precio(nuevoPrecio){
-  	precio=nuevoPrecio
-  }
-} 
-object gibson{ 
-  var precio = 15 
-  var estado = "sana" 
-  method precio(){ 
-    if(estado=="sana"){ 
-      self.precio(15) 
-      return precio 
-    } 
-    else{ 
-      self.precio(5) 
-      return precio 
-         } 
-     
-  } 
-  method precio(nuevoprecio){ 
-    precio=nuevoprecio 
-  } 
-  method estado()=estado 
-  method estado(estadoNuevo){estado=estadoNuevo} 
-}
-      
+
       
