@@ -188,4 +188,7 @@ test "la cancion crisantemo es corta"{
 test "la cancion alma de diamante no es corta"{
 	assert.notThat(almaDeDiamante.esCorta())
 }
+test "soledad es minimalista"{
+	assert.that(soledad.esMinimalista())
+}
 }

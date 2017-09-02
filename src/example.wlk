@@ -16,7 +16,7 @@ method banda()= banda
 	method habilidad(habilidadNueva){habilidad=habilidadNueva}	
 
 	method esMinimalista()=	self.tenesCancionesCortas()
-	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.duracion()<180})
+	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.esCorta()})
 	
 	method cancionesConPalabra(palabra)= self.album().canciones().filtraCancionesCon(palabra).filter({cancion=>cancion.letra().contains(palabra)})
 	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
