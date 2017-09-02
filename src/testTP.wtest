@@ -12,7 +12,25 @@ describe "tests entrega 1"{
 	const lucia
 	const joaquin
 	const luisAlberto
+	const kike
+	const soledad
 	fixture{
+		cisne = new Cancion()
+		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+		cisne.duracion(312)
+		
+		laFamilia=new Cancion()
+		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		laFamilia.duracion(264)
+		
+		soledad= new Lucia()
+		soledad.habilidad(55)
+		soledad.palabraQueHaceQueCanteBien("amor")
+		
+		kike= new Joaquin()
+		kike.habilidad(60)
+		kike.plusDeHabilidad(20)
+		
 		lucia = new Lucia()
 		lucia.banda("Pimpinela")
 		lucia.habilidad(70)
@@ -26,13 +44,6 @@ describe "tests entrega 1"{
 		
 		luisAlberto = new LuisAlberto()
 		
-		cisne = new Cancion()
-		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
-		cisne.duracion(312)
-		
-		laFamilia=new Cancion()
-		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
-		laFamilia.duracion(264)
 		
 		fender= new Fender()
 		gibson = new Gibson()
