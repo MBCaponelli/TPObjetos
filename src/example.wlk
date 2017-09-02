@@ -1,11 +1,12 @@
 import Canciones.*
 import guitarras.*
 import estadios.*
-class Persona{
+class TipoDeMusico{
 	var banda
 	var habilidad=0
+	var albumes=[]
 	
-
+method albumes()=albumes
 method banda()= banda
 	method banda(nuevaBanda) {
 		banda=nuevaBanda
@@ -16,38 +17,21 @@ method banda()= banda
 	
 }
 
-class Joaquin inherits Persona {
-	const cobra=50
-	method cobra()=cobra
 
-	method cobra(lugar){
-		if(banda==null)
-		{return (cobra*2)}
-		else 
-		{return cobra}
-	}
-	
 
- 
-	method habilidad(){
-		if(banda==null)
-		{return habilidad}
-		else
-		{return (habilidad+5)
-		}
-	}
-	method interpreta(cancion)= cancion.duracion()>300
-	
-}
-class Lucia inherits Persona
-{
+
+
+class VocalistaPopular inherits TipoDeMusico{
+	const tipoDeMusico="Vocalista popular"
 	const cobra=500
-	method cobra()=cobra
+	var plusDeHablidad=20
 	
+	method plusDeHablidad(nuevoPlus){plusDeHablidad=nuevoPlus}
+	method plusDeHablidad()=plusDeHablidad
 	method habilidad(){
 		if(banda!=null)
 		{
-			return (habilidad-20)
+			return (habilidad-plusDeHablidad)
 		}else{
 			return habilidad
 		}
@@ -61,9 +45,54 @@ class Lucia inherits Persona
 			return (cobra-100)
 		}
 	}
+	method cobra()=cobra
+	method tipoDeMusico()=tipoDeMusico
+}
+
+
+class DeGrupo  inherits TipoDeMusico{
+		const tipoDeMusico ="de grupo"
+		const cobra=50
+ 		var plusDeHablidad=5
+	
+		method plusDeHablidad()=plusDeHablidad
+		method plusDeHablidad(nuevoPlus){plusDeHablidad=nuevoPlus}
+	
+		 method habilidad(){
+		if(banda==null)
+		{return habilidad}
+		else
+		{return (habilidad+ plusDeHablidad)
+		}
+	}
+ 
+		method tipoDeMusico()=tipoDeMusico
+		
+		method cobra(lugar){
+		if(banda==null)
+		{return (cobra*2)}
+		else 
+		{return cobra}
+	}
+	
+	
+	method cobra()=cobra
+		
+}
+
+
+class Joaquin inherits DeGrupo {
+
+	method interpreta(cancion)= cancion.duracion()>300
+	
+}
+class Lucia inherits VocalistaPopular
+{
+
 	method interpreta(cancion)=cancion.letra().contains("familia")
 }
-class LuisAlberto inherits Persona{ 
+ 
+ class LuisAlberto inherits TipoDeMusico{ 
 	const cobra=1000
 	 const fender = new Fender()
   var guitarra=fender
@@ -79,11 +108,4 @@ class LuisAlberto inherits Persona{
             else {return 100}} 
   method interpreta(cancion)=true 
   method cobra(lugar)=if((lugar.fecha().month())<10){return cobra}
-  						else {return cobra+200}} 
-
-
-
-
-
-
-      
+  						else {return cobra+200}}      

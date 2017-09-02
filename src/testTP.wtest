@@ -13,12 +13,13 @@ describe "tests entrega 1"{
 	const joaquin
 	const luisAlberto
 	fixture{
-			lucia = new Lucia()
+		lucia = new Lucia()
 		lucia.banda("Pimpinela")
 		lucia.habilidad(70)
 	
 		
 		joaquin = new Joaquin()
+	
 		joaquin.banda("Pimpinela")
 		joaquin.habilidad(20)
 			
