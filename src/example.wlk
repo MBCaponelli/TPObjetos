@@ -73,12 +73,14 @@ class DeGrupo  inherits TipoDeMusico{
 
 class Joaquin inherits DeGrupo {
 
-	
+	var plusDeHabilidad=5
+	method plusDeHabilidad()=plusDeHabilidad
+	method plusDeHabilidad(nuevoPlus){plusDeHabilidad=nuevoPlus}
 		override method habilidad(){
 		if(banda==null)
 		{return habilidad}
 		else
-		{return (habilidad+ 5)
+		{return (habilidad+ plusDeHabilidad)
 		}
 	}
 	
