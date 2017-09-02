@@ -1,4 +1,4 @@
-
+import albumes.*
 class Guitarra {
 
 var precio =10

@@ -2,6 +2,7 @@ import example.*
 import Canciones.*
 import guitarras.*
 import estadios.*
+import albumes.*
 describe "tests entrega 1"{
 	const cisne
 	const laFamilia
@@ -16,10 +17,12 @@ describe "tests entrega 1"{
 	const soledad
 	fixture{
 		cisne = new Cancion()
+		cisne.titulo("Cisne")
 		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
 		cisne.duracion(312)
 		
 		laFamilia=new Cancion()
+		laFamilia.titulo("La familia")
 		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		laFamilia.duracion(264)
 		

@@ -1,12 +1,13 @@
 import Canciones.*
 import guitarras.*
 import estadios.*
-class TipoDeMusico{
+import albumes.*
+class Musico{
 	var banda
 	var habilidad=0
-	var albumes=[]
+	var album=new  Album()
 	
-method albumes()=albumes
+method album()=album
 method banda()= banda
 	method banda(nuevaBanda) {
 		banda=nuevaBanda
@@ -14,6 +15,8 @@ method banda()= banda
 	
 	method habilidad(habilidadNueva){habilidad=habilidadNueva}	
 
+	method esMinimalista()=	self.tenesCancionesCortas()
+	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.duracion()<180})
 	
 }
 
@@ -21,7 +24,7 @@ method banda()= banda
 
 
 
-class VocalistaPopular inherits TipoDeMusico{
+class VocalistaPopular inherits Musico{
 	const tipoDeMusico="Vocalista popular"
 	const cobra=500
 	var plusDeHablidad=20
@@ -50,7 +53,7 @@ class VocalistaPopular inherits TipoDeMusico{
 }
 
 
-class DeGrupo  inherits TipoDeMusico{
+class DeGrupo  inherits Musico{
 		const tipoDeMusico ="de grupo"
 		const cobra=50
  		
@@ -90,10 +93,10 @@ class Lucia inherits VocalistaPopular
 	var palabraQueHaceQueCanteBien="familia"
 	method palabraQueHaceQueCanteBien(nuevaPalabra)={palabraQueHaceQueCanteBien=nuevaPalabra}
 	method palabraQueHaceQueCanteBien()=palabraQueHaceQueCanteBien
-	method interpreta(cancion)=cancion.letra().contains("palabraQueHaceQueCanteBien")
+	method interpreta(cancion)=cancion.letra().contains(palabraQueHaceQueCanteBien)
 }
  
- class LuisAlberto inherits TipoDeMusico{ 
+ class LuisAlberto inherits Musico{ 
 	const cobra=1000
 	 const fender = new Fender()
   var guitarra=fender
