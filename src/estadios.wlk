@@ -1,7 +1,7 @@
 import example.*
 
 class Estadio {
-var cantantes =[luisAlberto, joaquin, lucia]
+var cantantes =[]
 var capacidad=0
 method cantantes() = cantantes
 method cantantes(losCantantes){cantantes = losCantantes}
