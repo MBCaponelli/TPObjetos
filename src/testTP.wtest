@@ -18,7 +18,13 @@ describe "tests entrega 1"{
 	const eres
 	const corazonAmericano
 	const almaDeDiamante
+	const crisantemo
 	fixture{
+		crisantemo = new Cancion()
+		crisantemo.titulo("Just Crisantemo")
+		crisantemo.letra("Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")
+		crisantemo.duracion(175)
+		
 		cisne = new Cancion()
 		cisne.titulo("Cisne")
 		cisne.letra("Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
@@ -49,7 +55,7 @@ describe "tests entrega 1"{
 		soledad.palabraQueHaceQueCanteBien("amor")
 		soledad.album().titulo("La Sole")
 		soledad.album().fechaDeLanzamiento(new Date(04,02,2005))
-		soledad.album().unidadesQueSalieronALaventa(200000)
+		soledad.album().unidadesQueSalieronALaVenta(200000)
 		soledad.album().unidadesQueSeVendieron(130000)
 		soledad.album().agregaCanciones([eres,corazonAmericano])
 		
@@ -175,5 +181,11 @@ test "el costo total del luna es de 1550"
 test "el costo total de la trastienda es de 1650"
 {
 	assert.equals(trastienda.cobra(),1650)
+}
+test "la cancion crisantemo es corta"{
+	assert.that(crisantemo.esCorta())
+}
+test "la cancion alma de diamante no es corta"{
+	assert.notThat(almaDeDiamante.esCorta())
 }
 }

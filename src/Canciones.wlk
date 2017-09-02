@@ -16,5 +16,5 @@ method duracion(nuevaDuracion){
 	duracion=nuevaDuracion
 }
 
-
+method esCorta()=self.duracion()<180
 }
