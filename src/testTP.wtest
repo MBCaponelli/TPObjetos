@@ -15,6 +15,9 @@ describe "tests entrega 1"{
 	const luisAlberto
 	const kike
 	const soledad
+	const eres
+	const corazonAmericano
+	const almaDeDiamante
 	fixture{
 		cisne = new Cancion()
 		cisne.titulo("Cisne")
@@ -26,9 +29,29 @@ describe "tests entrega 1"{
 		laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		laFamilia.duracion(264)
 		
+		eres=new Cancion()
+		eres.titulo("Eres")
+		eres.letra("Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días")
+		eres.duracion(145)
+		
+		corazonAmericano=new Cancion()
+		corazonAmericano.titulo("Corazon Americano")
+		corazonAmericano.letra("Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos")
+		corazonAmericano.duracion(154)
+		
+		almaDeDiamante =new Cancion()
+		almaDeDiamante.titulo("Alma de diamante")
+		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+		almaDeDiamante.duracion(216)
+		
 		soledad= new Lucia()
 		soledad.habilidad(55)
 		soledad.palabraQueHaceQueCanteBien("amor")
+		soledad.album().titulo("La Sole")
+		soledad.album().fechaDeLanzamiento(new Date(04,02,2005))
+		soledad.album().unidadesQueSalieronALaventa(200000)
+		soledad.album().unidadesQueSeVendieron(130000)
+		soledad.album().agregaCanciones([eres,corazonAmericano])
 		
 		kike= new Joaquin()
 		kike.habilidad(60)
@@ -50,6 +73,7 @@ describe "tests entrega 1"{
 			
 		
 		luisAlberto = new LuisAlberto()
+		
 		
 		
 		fender= new Fender()
