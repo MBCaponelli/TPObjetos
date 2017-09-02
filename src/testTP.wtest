@@ -79,8 +79,11 @@ describe "tests entrega 1"{
 			
 		
 		luisAlberto = new LuisAlberto()
-		
-		
+		luisAlberto.album().titulo("Para los árboles")
+		luisAlberto.album().fechaDeLanzamiento(new Date(31,03,2013))
+		luisAlberto.album().unidadesQueSalieronALaVenta(50000)
+		luisAlberto.album().unidadesQueSeVendieron(49000)
+		luisAlberto.album().agregaCanciones([cisne,almaDeDiamante])
 		
 		fender= new Fender()
 		gibson = new Gibson()
@@ -190,5 +193,11 @@ test "la cancion alma de diamante no es corta"{
 }
 test "soledad es minimalista"{
 	assert.that(soledad.esMinimalista())
+}
+test "Luis Alberto no es minimalista"{
+  assert.notThat(luisAlberto.esMinimalista())	
+}
+test "Joaquin no es minimalista"{
+	assert.notThat(joaquin.esMinimalista())
 }
 }
