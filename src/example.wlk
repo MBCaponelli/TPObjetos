@@ -21,6 +21,9 @@ method banda()= banda
 	method cancionesConPalabra(palabra)= self.album().canciones().filtraCancionesCon(palabra).filter({cancion=>cancion.letra().contains(palabra)})
 	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
 	method cancionMasLarga()=self.album().canciones().max({cancion=>cancion.letra().size()})
+	method lePego()=self.tieneBuenasVentas()
+	method tieneBuenasVentas()= self.porcentajeAlbumesVendidos()>75
+	method porcentajeAlbumesVendidos()=self.album().unidadesQueSeVendieron()*self.album().unidadesQueSalieronALaVenta()/100
 }
 
 
