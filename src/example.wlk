@@ -18,7 +18,8 @@ method banda()= banda
 	method esMinimalista()=	self.tenesCancionesCortas()
 	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.duracion()<180})
 	
-	method cancionesConPalabra(palabra)= self.album().canciones().filter({cancion=>cancion.letra().contains(palabra)})
+	method cancionesConPalabra(palabra)= self.album().canciones().filtraCancionesCon(palabra).filter({cancion=>cancion.letra().contains(palabra)})
+	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
 	
 }
 
