@@ -20,7 +20,7 @@ method banda()= banda
 	
 	method cancionesConPalabra(palabra)= self.album().canciones().filtraCancionesCon(palabra).filter({cancion=>cancion.letra().contains(palabra)})
 	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
-	
+	method cancionMasLarga()=self.album().canciones().max({cancion=>cancion.letra().size()})
 }
 
 
