@@ -40,7 +40,11 @@ describe "tests entrega 1"{
 	
 		
 		joaquin = new Joaquin()
-	
+		joaquin.album().titulo("Especial La Familia")
+		joaquin.album().fechaDeLanzamiento(new Date(17,06,1992))
+		joaquin.album().unidadesQueSalieronALaVenta(100000)
+		joaquin.album().unidadesQueSeVendieron(89000)
+		joaquin.album().agregaCancion(laFamilia)
 		joaquin.banda("Pimpinela")
 		joaquin.habilidad(20)
 			
