@@ -53,19 +53,8 @@ class VocalistaPopular inherits TipoDeMusico{
 class DeGrupo  inherits TipoDeMusico{
 		const tipoDeMusico ="de grupo"
 		const cobra=50
- 		var plusDeHablidad=5
-	
-		method plusDeHablidad()=plusDeHablidad
-		method plusDeHablidad(nuevoPlus){plusDeHablidad=nuevoPlus}
-	
-		 method habilidad(){
-		if(banda==null)
-		{return habilidad}
-		else
-		{return (habilidad+ plusDeHablidad)
-		}
-	}
- 
+ 		
+ 		method habilidad()=habilidad
 		method tipoDeMusico()=tipoDeMusico
 		
 		method cobra(lugar){
@@ -77,19 +66,29 @@ class DeGrupo  inherits TipoDeMusico{
 	
 	
 	method cobra()=cobra
+	method interpreta(cancion)= cancion.duracion()>300
 		
 }
 
 
 class Joaquin inherits DeGrupo {
 
-	method interpreta(cancion)= cancion.duracion()>300
+	
+		override method habilidad(){
+		if(banda==null)
+		{return habilidad}
+		else
+		{return (habilidad+ 5)
+		}
+	}
 	
 }
 class Lucia inherits VocalistaPopular
 {
-
-	method interpreta(cancion)=cancion.letra().contains("familia")
+	var palabraQueHaceQueCanteBien="familia"
+	method palabraQueHaceQueCanteBien(nuevaPalabra)={palabraQueHaceQueCanteBien=nuevaPalabra}
+	method palabraQueHaceQueCanteBien()=palabraQueHaceQueCanteBien
+	method interpreta(cancion)=cancion.letra().contains("palabraQueHaceQueCanteBien")
 }
  
  class LuisAlberto inherits TipoDeMusico{ 
@@ -108,4 +107,4 @@ class Lucia inherits VocalistaPopular
             else {return 100}} 
   method interpreta(cancion)=true 
   method cobra(lugar)=if((lugar.fecha().month())<10){return cobra}
-  						else {return cobra+200}}      
+  						else {return cobra+200}}         
