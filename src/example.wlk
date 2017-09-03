@@ -24,7 +24,7 @@ method banda()= banda
 	method cancionMasLarga()=self.album().canciones().max({cancion=>cancion.letra().size()})
 	method lePego()=self.tieneBuenasVentas()
 	method tieneBuenasVentas()= self.porcentajeAlbumesVendidos()>75
-	method porcentajeAlbumesVendidos()=self.album().unidadesQueSeVendieron()*self.album().unidadesQueSalieronALaVenta()/100
+	method porcentajeAlbumesVendidos()=self.album().unidadesQueSeVendieron()*100/self.album().unidadesQueSalieronALaVenta()
 }
 
 

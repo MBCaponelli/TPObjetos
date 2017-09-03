@@ -222,4 +222,14 @@ test "la cancion mas larga del album La Sole es Eres"{
 test "la cancion mas larga del album especial la Familia es La Familia"{
 	assert.equals(joaquin.cancionMasLarga().titulo(),"La familia")
 }
+test "luis alberto la pego"{
+	assert.that(luisAlberto.lePego())
+}
+
+test "soledad no la pego"{
+	assert.notThat(soledad.lePego())
+}
+test "joaquin la pego"{
+	assert.that(luisAlberto.lePego())
+}
 }
