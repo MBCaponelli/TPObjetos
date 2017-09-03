@@ -47,7 +47,7 @@ describe "tests entrega 1"{
 		
 		almaDeDiamante =new Cancion()
 		almaDeDiamante.titulo("Alma de diamante")
-		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+		almaDeDiamante.letra("Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
 		almaDeDiamante.duracion(216)
 		
 		soledad= new Lucia()
@@ -202,5 +202,8 @@ test "Joaquin no es minimalista"{
 }
 test "la obra de kike dura 0 seg"{
 	assert.equals(kike.duracionDeLaObra(),0)
+}
+test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"{
+	assert.equals(luisAlberto.cancionesConPalabra("cielo"), [almaDeDiamante])
 }
 }

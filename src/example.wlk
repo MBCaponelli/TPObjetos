@@ -17,8 +17,9 @@ method banda()= banda
 
 	method esMinimalista()=	self.tenesCancionesCortas()
 	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.esCorta()})
+
 	
-	method cancionesConPalabra(palabra)= self.album().canciones().contains(palabra)
+	method cancionesConPalabra(palabra)= self.album().canciones().filter({cancion=>cancion.letra().contains(palabra)}) 
 	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
 	method cancionMasLarga()=self.album().canciones().max({cancion=>cancion.letra().size()})
 	method lePego()=self.tieneBuenasVentas()
