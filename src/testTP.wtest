@@ -200,4 +200,7 @@ test "Luis Alberto no es minimalista"{
 test "Joaquin no es minimalista"{
 	assert.notThat(joaquin.esMinimalista())
 }
+test "la obra de kike dura 0 seg"{
+	assert.equals(kike.duracionDeLaObra(),0)
+}
 }
