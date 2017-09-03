@@ -213,5 +213,13 @@ test "la obra de soledad dura 299 seg"{
 test "la obra de luisAlberto"{
 	assert.equals(luisAlberto.duracionDeObra(),703)
 }
-
+test "la cancion mas larga para los arboles es alma de diamante"{
+	assert.equals(luisAlberto.cancionMasLarga().titulo(),"Alma de diamante")
+}
+test "la cancion mas larga del album La Sole es Eres"{
+	assert.equals(soledad.cancionMasLarga().titulo(),"Eres")
+}
+test "la cancion mas larga del album especial la Familia es La Familia"{
+	assert.equals(joaquin.cancionMasLarga().titulo(),"La familia")
+}
 }
