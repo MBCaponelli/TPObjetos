@@ -83,7 +83,7 @@ describe "tests entrega 1"{
 		luisAlberto.album().fechaDeLanzamiento(new Date(31,03,2013))
 		luisAlberto.album().unidadesQueSalieronALaVenta(50000)
 		luisAlberto.album().unidadesQueSeVendieron(49000)
-		luisAlberto.album().agregaCanciones([cisne,almaDeDiamante])
+		luisAlberto.album().agregaCanciones([cisne,almaDeDiamante,crisantemo])
 		
 		fender= new Fender()
 		gibson = new Gibson()
@@ -200,10 +200,18 @@ test "Luis Alberto no es minimalista"{
 test "Joaquin no es minimalista"{
 	assert.notThat(joaquin.esMinimalista())
 }
+
+test "Saber qué canciones de Luis Alberto tienen la palabra “pujante”"{
+	assert.equals(luisAlberto.cancionesConPalabra("pujante"),[])
+}
 test "la obra de kike dura 0 seg"{
-	assert.equals(kike.duracionDeLaObra(),0)
+	assert.equals(kike.duracionDeObra(),0)
 }
-test "Saber qué canciones de Luis Alberto tienen la palabra “cielo”"{
-	assert.equals(luisAlberto.cancionesConPalabra("cielo"), [almaDeDiamante])
+test "la obra de soledad dura 299 seg"{
+	assert.equals(soledad.duracionDeObra(),299)
 }
+test "la obra de luisAlberto"{
+	assert.equals(luisAlberto.duracionDeObra(),703)
+}
+
 }
