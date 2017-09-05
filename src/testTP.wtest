@@ -6,8 +6,6 @@ import albumes.*
 describe "tests entrega 1"{
 	const cisne
 	const laFamilia
-	const fender
-	const gibson
 	const trastienda
 	const lunaPark
 	const lucia
@@ -85,8 +83,7 @@ describe "tests entrega 1"{
 		luisAlberto.album().unidadesQueSeVendieron(49000)
 		luisAlberto.album().agregaCanciones([cisne,almaDeDiamante,crisantemo])
 		
-		fender= new Fender()
-		gibson = new Gibson()
+		
 		
 		trastienda= new Trastienda()
 		trastienda.capacidad(400)
@@ -152,11 +149,12 @@ test "si luis Alberto toca una fender su habilidad es 80"{
 }
 test "si luis Alberto toca una gibson sana su habilidad es 100"{
 	luisAlberto.nuevaGuitarra(gibson)
+	assert.equals(gibson.precio(),15)/*si su precio es 15 entonces la gibson esta sana */
 	assert.equals(luisAlberto.habilidad(),100)
 }
 test "si luis Alberto toca una gibson en mal estado su habilidad es 40"{
-	gibson.estado("mal")
 	luisAlberto.nuevaGuitarra(gibson)
+	gibson.estado(new Mal())
 	assert.equals(luisAlberto.habilidad(),40)
 }
 test "Luis Alberto interpreta bien la cancion La familia "{

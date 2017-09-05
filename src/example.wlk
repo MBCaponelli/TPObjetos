@@ -132,7 +132,7 @@ class Lucia inherits VocalistaPopular
  
  class LuisAlberto inherits Musico{ 
 	const cobra=1000
-	const fender = new Fender()
+	
   var guitarra=fender
  
   method cobra()=cobra
