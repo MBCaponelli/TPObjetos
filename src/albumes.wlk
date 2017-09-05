@@ -8,12 +8,15 @@ class Album {
 
 
 	method canciones() = canciones
+	
 	method agregaCanciones(unasCanciones){
 		self.canciones().addAll(unasCanciones)
 	}
+	
 	method agregaCancion(unaCancion){
 		self.agregaCanciones([unaCancion])
 	}
+	
 	
 	method eliminaTodasLasCanciones(){
 		self.canciones().clear()
@@ -25,16 +28,28 @@ class Album {
 	}
 	
 	method titulo()=titulo
-	method titulo(nuevoTitulo){titulo=nuevoTitulo}
+	
+	method titulo(nuevoTitulo){
+		titulo=nuevoTitulo
+	}
 	
 	method fechaDeLanzamiento()=fechaDeLanzamiento
-	method fechaDeLanzamiento(nuevaFecha){fechaDeLanzamiento=nuevaFecha}
+	
+	method fechaDeLanzamiento(nuevaFecha){
+		fechaDeLanzamiento=nuevaFecha
+	}
 	
 	method unidadesQueSalieronALaVenta()=unidadesQueSalieronALaVenta
-	method unidadesQueSalieronALaVenta(cantidad){unidadesQueSalieronALaVenta=cantidad}
+	
+	method unidadesQueSalieronALaVenta(cantidad){
+		unidadesQueSalieronALaVenta=cantidad
+	}
 	
 	method unidadesQueSeVendieron()=unidadesQueSeVendieron
-	method unidadesQueSeVendieron(cantidad){unidadesQueSeVendieron=cantidad}
+	
+	method unidadesQueSeVendieron(cantidad){
+		unidadesQueSeVendieron=cantidad
+	}
 
 
 }

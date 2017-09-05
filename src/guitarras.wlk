@@ -12,6 +12,7 @@ class Fender inherits Guitarra{
 }
 class Gibson inherits Guitarra{
  var estado = "sana" 
+ 
   method precio(){ 
     if(estado=="sana"){ 
       self.precio(15) 
@@ -25,5 +26,8 @@ class Gibson inherits Guitarra{
   } 
 
   method estado()=estado 
-  method estado(estadoNuevo){estado=estadoNuevo} 
+  
+  method estado(estadoNuevo){
+  	estado=estadoNuevo
+  } 
 }
