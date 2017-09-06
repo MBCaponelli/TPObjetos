@@ -4,7 +4,7 @@ object trastienda
 {
 var cantantes =[]
 var capacidad=400
-const fecha =new Date(15,11,2017)
+var fecha =new Date(15,11,2017)
 method cantantes() = cantantes
 
 method cantantes(losCantantes){
@@ -17,7 +17,9 @@ method capacidad(nuevaCapacidad){
 	capacidad=nuevaCapacidad
 }
 method fecha()=fecha
-	
+method fecha(nuevoDia,nuevoMes,nuevoAnio) {
+	fecha = new Date(nuevoDia,nuevoMes,nuevoAnio)
+}
 method capacidad(){
 		if((self.fecha().dayOfWeek())!=6)	
 			{return capacidad}
