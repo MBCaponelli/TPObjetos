@@ -6,8 +6,6 @@ import albumes.*
 describe "tests entrega 1"{
 	const cisne
 	const laFamilia
-	const trastienda
-	const lunaPark
 	const lucia
 	const joaquin
 	const luisAlberto
@@ -85,12 +83,6 @@ describe "tests entrega 1"{
 		
 		
 		
-		trastienda= new Trastienda()
-		trastienda.capacidad(400)
-		trastienda.cantantes([luisAlberto, joaquin, lucia])
-		lunaPark= new LunaPark()
-		lunaPark.capacidad(9290)
-		lunaPark.cantantes([luisAlberto, joaquin, lucia])
 		
 	
 
@@ -177,10 +169,12 @@ test "luis Alberto cobra 1200 por trastienda"{
 }
 test "el costo total del luna es de 1550"
 {
+	lunaPark.cantantes([luisAlberto, joaquin, lucia])
 	assert.equals(lunaPark.cobra(),1550)
 }
 test "el costo total de la trastienda es de 1650"
 {
+	trastienda.cantantes([luisAlberto, joaquin, lucia])
 	assert.equals(trastienda.cobra(),1650)
 }
 test "la cancion crisantemo es corta"{
