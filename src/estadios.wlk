@@ -11,7 +11,7 @@ method cantantes(losCantantes){
 	cantantes = losCantantes
 }
 
-method cobra()=return cantantes.map({persona =>persona.cobra(self)}).sum()
+method cobra()=return cantantes.sum({persona =>persona.cobra(self)})
 
 method capacidad(nuevaCapacidad){
 	capacidad=nuevaCapacidad
@@ -42,5 +42,6 @@ method cobra()=return cantantes.map({persona =>persona.cobra(self)}).sum()
 method fecha() {
     return new Date(04,09,2017)
 }
+
 method capacidad()=capacidad
 }

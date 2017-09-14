@@ -147,7 +147,7 @@ test "si luis Alberto toca una gibson sana su habilidad es 100"{
 }
 test "si luis Alberto toca una gibson en mal estado su habilidad es 40"{
 	luisAlberto.nuevaGuitarra(gibson)
-	gibson.estado(new Mal())
+	gibson.seRompe()
 	assert.equals(luisAlberto.habilidad(),40)
 }
 test "Luis Alberto interpreta bien la cancion La familia "{
