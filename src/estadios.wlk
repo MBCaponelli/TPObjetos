@@ -3,7 +3,7 @@ import example.*
 object trastienda
 {
 var cantantes =[]
-var capacidad=400
+const capacidad=400
 var fecha =new Date(15,11,2017)
 method cantantes() = cantantes
 
@@ -11,11 +11,11 @@ method cantantes(losCantantes){
 	cantantes = losCantantes
 }
 
-method cobra()=return cantantes.sum({persona =>persona.cobra(self)})
 
-method capacidad(nuevaCapacidad){
-	capacidad=nuevaCapacidad
-}
+
+method cobra()= new Cobra().cobra(self)
+
+
 method fecha()=fecha
 method fecha(nuevoDia,nuevoMes,nuevoAnio) {
 	fecha = new Date(nuevoDia,nuevoMes,nuevoAnio)
@@ -31,17 +31,22 @@ object lunaPark {
 var cantantes =[]
 const capacidad=9290
 
+
 method cantantes() = cantantes
 
 method cantantes(losCantantes){
 	cantantes = losCantantes
 }
 
-method cobra()=return cantantes.map({persona =>persona.cobra(self)}).sum()
+method cobra()= new Cobra().cobra(self)
 
 method fecha() {
     return new Date(04,09,2017)
 }
 
 method capacidad()=capacidad
+}
+class Cobra{
+	
+method cobra(unEstadio)=return unEstadio.cantantes().map({persona =>persona.cobra(unEstadio)}).sum()
 }
