@@ -10,6 +10,11 @@ object gibson{
 
   method estado()=estado 
   
+  method seRompe() {
+     self.estado(new Mal())
+}
+  
+  
   method estado(estadoNuevo){
   	estado=estadoNuevo
   }
