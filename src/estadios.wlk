@@ -1,4 +1,4 @@
-import example.*
+import cantantes.*
 
 object trastienda
 {

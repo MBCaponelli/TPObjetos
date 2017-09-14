@@ -117,6 +117,8 @@ class Joaquin inherits DeGrupo {
 	}
 	
 }
+
+
 class Lucia inherits VocalistaPopular
 {
 	var palabraQueHaceQueCanteBien="familia"

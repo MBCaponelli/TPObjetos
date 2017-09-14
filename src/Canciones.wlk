@@ -1,5 +1,5 @@
 import guitarras.*
-import example.*
+import cantantes.*
 import albumes.*
 class Cancion {
 var titulo
