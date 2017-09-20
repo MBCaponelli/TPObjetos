@@ -1,27 +1,19 @@
-import guitarras.*
-import cantantes.*
-import albumes.*
+
 class Cancion {
-var titulo
-var letra
-var duracion=0
-method titulo()=titulo
+	var nombre
+	var duracion
+	var letra
 
-method titulo(nuevoTitulo){
-	titulo=nuevoTitulo
-}
+	constructor(unNombre, unaDuracion, unaLetra) {
+		nombre = unNombre duracion = unaDuracion letra = unaLetra
+	}
 
-method letra()=letra
+	method duracion() = duracion
 
-method letra(letraDeCancion){
-	letra=letraDeCancion
-}
+	method letra() = letra
 
-method duracion()=duracion
-
-method duracion(nuevaDuracion){
-	duracion=nuevaDuracion
-}
-
-method esCorta()=self.duracion()<180
+	method letra(nuevaLetra) {
+		letra = nuevaLetra
+	}
+	 
 }
