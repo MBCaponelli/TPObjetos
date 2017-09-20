@@ -1,0 +1,120 @@
+import cantantes.*
+import presentaciones.*
+import Canciones.*
+import guitarras.*
+
+describe "Entrega 1" {
+	const laFamilia
+	const cisne
+	const elLunaPark
+	const laTrastienda
+
+	fixture {
+		laFamilia =
+		new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		cisne =
+		new Cancion("Cisne", 312, "Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
+		elLunaPark = new Presentacion([ luisAlberto, joaquin, lucia
+		], lunaPark, new Date(20, 04, 2017)) laTrastienda = new Presentacion([
+		luisAlberto, joaquin, lucia ], trastienda, new Date(15, 11, 2017))
+	}
+
+	test "Joaquin canta en un grupo con habilidad 25 " {
+		assert.equals(joaquin.habilidad(), 25)
+	}
+
+	test "Joaquín canta como solista con habilidad 20" {
+		joaquin.dejaElGrupo()
+
+		assert.equals(joaquin.habilidad(), 20)
+	}
+
+	test "Lucia canta en grupo con habilidad 50" {
+		assert.equals(lucia.habilidad(), 50)
+	}
+	test "Lucia canta como solista con habilidad 70" {
+		lucia.dejaElGrupo()
+		assert.equals(lucia.habilidad(), 70)
+	}
+
+	test "Luis Alberto toca con la Fender con habilidad 80" {
+		assert.equals(luisAlberto.habilidad(), 80)
+	}
+
+	test "luis Alberto toca con una gibson sana con habilidad 100" {
+		luisAlberto.tocarCon(gibson)
+		assert.equals(gibson.estado(), sana)
+		assert.equals(luisAlberto.habilidad(), 100)
+	}
+
+	test "Luis Alberto toca con la gibson mal con habilidad 40" {
+		luisAlberto.tocarCon(gibson)
+		gibson.seRompe()
+		assert.equals(luisAlberto.habilidad(), 40)
+	}
+
+	test "Joaquin no interpreta bien la cancion La Familia" {
+		assert.notThat(joaquin.interpretaBien(laFamilia))
+	}
+
+	test "Joaquin interpreta bien la cancion Cisne" {
+		assert.that(joaquin.interpretaBien(cisne))
+	}
+
+	test "Lucia interpreta bien la cancion La Familia" {
+		assert.that(lucia.interpretaBien(laFamilia))
+	}
+	test "Lucia no interpreta bien la cancion Cisne" {
+		assert.notThat(lucia.interpretaBien(cisne))
+	}
+
+	test "Luis ALberto interpreta bien la cancion la Familia" {
+		assert.that(luisAlberto.interpretaBien(laFamilia))
+	}
+
+	test "Luis ALberto interpreta bien la cancion Cisne" {
+		assert.that(luisAlberto.interpretaBien(cisne))
+	}
+	test "Joaquin cobra 50 en el Luna Park" {
+		assert.equals(joaquin.cobrar(lunaPark), 50)
+	}
+
+	test "Joaquin cobra 100 tocando solo en la trastienda como solista" {
+		joaquin.dejaElGrupo()
+		laTrastienda.cantantes([ joaquin ])
+		assert.equals(joaquin.cobrar(laTrastienda), 100)
+	}
+
+	test " La capacidad para la Trastienda el 05 de agosto del 2017 es 700" {
+		assert.equals(trastienda.capacidadEn(new Date(05, 08, 2017)), 700)
+	}
+
+	test "la capacidad pata la Trastienda el 08 de agosto del 2017 es 400" {
+		assert.equals(trastienda.capacidadEn(new Date(08, 08, 2017)), 400)
+	}
+
+	test "Lucia cobra 500 por la presentacion en Luna Park" {
+		assert.equals(lucia.cobrar(elLunaPark), 500)
+	}
+
+	test "Lucia cobra 400 por la presentacion en la Trastienda" {
+		assert.equals(lucia.cobrar(laTrastienda), 400)
+	}
+
+	test "luis Alberto cobra 1000 por la presentacion en el Luna Park" {
+		assert.equals(luisAlberto.cobrar(elLunaPark), 1000)
+	}
+
+	test "luis Alberto cobra 1200 por la presentacion en La Trastienda" {
+		assert.equals(luisAlberto.cobrar(laTrastienda), 1200)
+	}
+
+	test "el costo del Luna Park es 1550" {
+		assert.equals(elLunaPark.costo(), 1550)
+	}
+	test "el costo de la Trastienda el 15/11/2017 es 1650" {
+		laTrastienda.fecha(new Date(15, 11, 2017))
+		assert.equals(laTrastienda.costo(), 1650)
+	}
+
+}
