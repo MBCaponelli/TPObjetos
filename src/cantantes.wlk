@@ -1,38 +1,44 @@
 import Canciones.*
 import guitarras.*
 
-class Musico {
-	var banda
-	var habilidadBase
-	var precioBase
-
-	constructor(unaBanda, unaHabilidad, unPrecioBase) {
-		banda = unaBanda habilidadBase = unaHabilidad precioBase = unPrecioBase
-	}
-
-	method habilidadBase() = habilidadBase
-
-	method estaEnGrupo() {
-		return banda.sosGrupo()
-	}
-
-	method habilidad() {
-		return self.habilidadBase() + self.habilidadEnGrupo()
-	}
-
-	method habilidadEnGrupo() method cobrar(unaPresentacion) {
-		return self.precioBase() + self.precioEspecial(unaPresentacion)
-	}
-
-	method precioBase() = precioBase
-
-	method precioEspecial(unaPresentacion) method dejaElGrupo() {
-		self.banda(solista)
-	}
-
-	method banda(nuevaBanda) {
-		banda = nuevaBanda
-	}
+class Musico{
+                var banda
+                var habilidadBase
+                var albums=[]
+                constructor(unaBanda, unaHabilidad,unosAlbums){
+                               banda=unaBanda
+                               habilidadBase=unaHabilidad       
+                               albums=unosAlbums
+                }
+               
+                method habilidadBase()=habilidadBase
+               
+                method albums()=albums
+               
+                method estaEnGrupo(){
+                               return banda.sosGrupo()
+                }
+               
+                method habilidad(){
+                               return self.habilidadBase()+self.habilidadEnGrupo()
+                }
+               
+                method habilidadEnGrupo()
+               
+                method listaDeLetras()=self.listaDeCanciones().map({cancion=>cancion.letra()})
+                method listaDeCanciones()=self.albums().map({album=>album.canciones()}).flatten()
+                	             
+                method dejaElGrupo(){
+                               self.banda(solista)
+                }
+               
+                method banda(nuevaBanda){
+                               banda=nuevaBanda
+                }
+                method esMinimalista()=self.listaDeCanciones().all({cancion=>cancion.esCorta()})
+                method duracionDeLaObra()=self.listaDeCanciones().sum({cancion=>cancion.duracion()})
+                method laPego()=self.albums().all({album=>album.seVendioBien()})
+                method contieneLaPalabra(palabra)=self.listaDeLetras().map({letra=>letra.words()}).flatten().contains(palabra)
 }
 
 class DeGrupo inherits Musico {
