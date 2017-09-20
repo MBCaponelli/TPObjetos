@@ -1,157 +1,130 @@
 import Canciones.*
 import guitarras.*
-import estadios.*
-import albumes.*
-class Musico{
+
+class Musico {
 	var banda
-	var habilidad=0
-	var album=new  Album()
-	
-	method album()=album
-	
-	method banda()= banda
-	
+	var habilidadBase
+	var precioBase
+
+	constructor(unaBanda, unaHabilidad, unPrecioBase) {
+		banda = unaBanda habilidadBase = unaHabilidad precioBase = unPrecioBase
+	}
+
+	method habilidadBase() = habilidadBase
+
+	method estaEnGrupo() {
+		return banda.sosGrupo()
+	}
+
+	method habilidad() {
+		return self.habilidadBase() + self.habilidadEnGrupo()
+	}
+
+	method habilidadEnGrupo() method cobrar(unaPresentacion) {
+		return self.precioBase() + self.precioEspecial(unaPresentacion)
+	}
+
+	method precioBase() = precioBase
+
+	method precioEspecial(unaPresentacion) method dejaElGrupo() {
+		self.banda(solista)
+	}
+
 	method banda(nuevaBanda) {
-			banda=nuevaBanda
-		}
-	
-	method habilidad(habilidadNueva){
-		habilidad=habilidadNueva
-	}	
-
-	method esMinimalista()=	self.tenesCancionesCortas()
-	
-	method tenesCancionesCortas()= self.album().canciones().all({cancion=>cancion.esCorta()})
-
-	method cancionesConPalabra(palabra)= self.album().canciones().filter({cancion=>cancion.letra().contains(palabra)}) 
-	
-	method duracionDeObra()=self.album().canciones().sum({cancion=>cancion.duracion()})
-	
-	method cancionMasLarga()=self.album().canciones().max({cancion=>cancion.letra().size()})
-	
-	method lePego()=self.tieneBuenasVentas()
-	
-	method tieneBuenasVentas()= self.porcentajeAlbumesVendidos()>75
-	
-	method porcentajeAlbumesVendidos()=self.album().unidadesQueSeVendieron()*100/self.album().unidadesQueSalieronALaVenta()
+		banda = nuevaBanda
+	}
 }
 
+object joaquin inherits Musico ( pimpinela , 20 , 100 ) {
 
-
-
-
-class VocalistaPopular inherits Musico{
-	const tipoDeMusico="Vocalista popular"
-	const cobra=500
-	var plusDeHablidad=20
-	
-	method plusDeHablidad(nuevoPlus){
-		plusDeHablidad=nuevoPlus
-	}
-	
-	method plusDeHablidad()=plusDeHablidad
-	
-	method habilidad(){
-		if(banda!=null)
-		{
-			return (habilidad-plusDeHablidad)
-		}else{
-			return habilidad
+	override method habilidadEnGrupo() {
+		if (self.estaEnGrupo()) {
+			return 5
+		} else {
+			return 0
 		}
 	}
-	
-	method cobra(lugar){
-		if(lugar.capacidad()>5000)
-		{
-			return cobra
-		}
-		else{
-			return (cobra-100)
-		}
+
+	method interpretaBien(unaCancion) {
+		return unaCancion.duracion() > 300
 	}
-	
-	method cobra()=cobra
-	
-	method tipoDeMusico()=tipoDeMusico
-}
 
-
-class DeGrupo  inherits Musico{
-		const tipoDeMusico ="de grupo"
-		const cobra=50
- 		
- 		method habilidad()=habilidad
- 		
-		method tipoDeMusico()=tipoDeMusico
-		
-		method cobra(lugar){
-		if(banda==null)
-		{return (cobra*2)}
-		else 
-		{return cobra}
-	}
-	
-	
-	method cobra()=cobra
-	
-	method interpreta(cancion)= cancion.duracion()>300
-		
-}
-
-
-class Joaquin inherits DeGrupo {
-
-	var plusDeHabilidad=5
-	
-	method plusDeHabilidad()=plusDeHabilidad
-	
-	method plusDeHabilidad(nuevoPlus){
-		plusDeHabilidad=nuevoPlus
-	}
-		override method habilidad(){
-		if(banda==null)
-		{return habilidad}
-		else
-		{return (habilidad+ plusDeHabilidad)
+	override method precioEspecial(unaPresentacion) {
+		if (self.estaEnGrupo()) {
+			return - 50
+		} else {
+			return 0
 		}
 	}
-	
 }
 
+object lucia inherits Musico ( pimpinela , 70 , 400 ) {
 
-class Lucia inherits VocalistaPopular
-{
-	var palabraQueHaceQueCanteBien="familia"
-	
-	method palabraQueHaceQueCanteBien(nuevaPalabra)={
-		palabraQueHaceQueCanteBien=nuevaPalabra
+	override method habilidadEnGrupo() {
+		if (self.estaEnGrupo()) {
+			return - 20
+		} else {
+			return 0
+		}
 	}
+
+	method interpretaBien(unaCancion) {
+		return self.convertirEnMinusculas(unaCancion).contains("familia")
+	}
+
+
+	method convertirEnMinusculas(unaCancion) {
+		return unaCancion.letra().toLowerCase()
+		}
 	
-	method palabraQueHaceQueCanteBien()=palabraQueHaceQueCanteBien
-	
-	method interpreta(cancion)=cancion.letra().contains(palabraQueHaceQueCanteBien)
+
+	override method precioEspecial(unaPresentacion) {
+		if (unaPresentacion.esConcurrida()) {
+			return 100
+		} else {
+			return 0
+		}
+	}
 }
+
+object luisAlberto {
+	var guitarra = fender
+
+	method tocarCon(unaGuitarra) {
+		guitarra = unaGuitarra
+	}
+
+	method habilidad() {
+		return self.habilidadDeLaGuitarra().min(100)
+	}
+
+	method habilidadDeLaGuitarra() {
+		return 8 * guitarra.precio()
+	}
+
+	method interpretaBien(unaCancion) {
+		return true
+	}
+
+	method cobrar(unaPresentacion) {
+		if (unaPresentacion.fechaAnteriorASeptiembre()) {
+			return 1000
+		} else {
+			return 1200
+		}
+	}
+}
+
+object pimpinela {
+	method sosGrupo() {
+		return true
+	}
+}
+
+object solista {
+	method sosGrupo() {
+		return false
+	}
+}
+
  
- class LuisAlberto inherits Musico{ 
-	const cobra=1000
-	
-  var guitarra=fender
- 
-  method cobra()=cobra
-   
-  method guitarra()=guitarra 
-  
-  method nuevaGuitarra(guitarraNueva){
-  	guitarra=guitarraNueva
-  } 
-  method precioGuitarra()= guitarra.precio() 
-  
-  method habilidad() {
-  			if((guitarra.precio()*8)<100) {return guitarra.precio()*8} 
-            else {return 100}}
-             
-  method interpreta(cancion)=true 
-  
-  method cobra(lugar)=
-  						if((lugar.fecha().month())<10){return cobra}
-  						else {return cobra+200}}         
