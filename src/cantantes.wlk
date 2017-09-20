@@ -1,5 +1,6 @@
 import Canciones.*
 import guitarras.*
+import albums.*
 
 class Musico{
                 var banda
