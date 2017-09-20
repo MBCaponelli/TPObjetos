@@ -117,32 +117,35 @@ class VocalistaPopular inherits Musico{
                
 }
 
-object luisAlberto {
-	var guitarra = fender
-
-	method tocarCon(unaGuitarra) {
-		guitarra = unaGuitarra
-	}
-
-	method habilidad() {
-		return self.habilidadDeLaGuitarra().min(100)
-	}
-
-	method habilidadDeLaGuitarra() {
-		return 8 * guitarra.precio()
-	}
-
-	method interpretaBien(unaCancion) {
-		return true
-	}
-
-	method cobrar(unaPresentacion) {
-		if (unaPresentacion.fechaAnteriorASeptiembre()) {
-			return 1000
-		} else {
-			return 1200
-		}
-	}
+object luisAlberto inherits Musico(solista,8,[paraLosArboles,justCrisantemo]){
+                var guitarra=fender
+               
+                method tocarCon(unaGuitarra){
+                               guitarra=unaGuitarra
+                }
+               
+                override method habilidadEnGrupo() {
+                	
+                }
+                override method habilidad(){
+                               return self.habilidadDeLaGuitarra().min(100)
+                }
+               
+                method habilidadDeLaGuitarra(){
+                               return 8*guitarra.precio()
+                }
+               
+                method interpretaBien(unaCancion){
+                               return true
+                }
+               
+                method cobrar(unaPresentacion){
+                               if(unaPresentacion.fechaAnteriorASeptiembre()){
+                                               return 1000
+                               }else{
+                                               return 1200
+                               }
+                }
 }
 
 object pimpinela {
