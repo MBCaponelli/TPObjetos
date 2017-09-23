@@ -22,17 +22,17 @@ describe "Entrega 2" {
                 fixture {
                                laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
                                especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
-                               joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia])
+                               joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50)
                       
                                eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
                                corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
                                laSole= new Album("La Sole",[eres,corazonAmericano],new Date(04,02,2005),200000,130000)
-                               kike= new DeGrupo(pimpinela,60,[])
-                               kike.plusdehabilidad(20)
-                               soledad= new VocalistaPopular(solista,55,[laSole])
+                               kike= new DeGrupo(bandaX,60,[],20)
+                               
+                               soledad= new VocalistaPopular(solista,55,[laSole],"amor")
                               
                                
-                               lucia= new VocalistaPopular(pimpinela,70,[])
+                               lucia= new VocalistaPopular(pimpinela,70,[],"familia")
                                
                              
                                elLunaPark = new Presentacion([ luisAlberto, joaquin, lucia], lunaPark, new Date(20, 04, 2017)) laTrastienda = new Presentacion([
@@ -54,10 +54,10 @@ describe "Entrega 2" {
                                	assert.notThat(luisAlberto.esMinimalista())
                                }
                                test "Hay canciones de Luis Alberto que contienen la palabra cielo"{
-                               	assert.that(luisAlberto.contieneLaPalabra("cielo"))
+                               	assert.equals(luisAlberto.tieneLaPalabra("cielo"), [almaDeDiamante,crisantemo])
                                }
                                 test "ninguna cancion de Luis Alberto contiene la palabra pujante"{
-                               	assert.notThat(luisAlberto.contieneLaPalabra("pujante"))
+                               	assert.equals(luisAlberto.tieneLaPalabra("pujante"),[])
                                }
                                test "la obra de kike no dura nada" {
                                	assert.equals(kike.duracionDeLaObra(),0)
@@ -68,11 +68,11 @@ describe "Entrega 2" {
                                 test "la obra de Luis Alberto dura 703"{
                                 	assert.equals(luisAlberto.duracionDeLaObra(),703)
                                 }
-                                test "la canción más larga del álbum Para Los Arboles es cisne"{
-                                	assert.equals(paraLosArboles.laCancionMasLarga().nombre(),"Cisne")
+                                test "la canción más larga del álbum Para Los Arboles es alma de diamante"{
+                                	assert.equals(paraLosArboles.laCancionMasLarga().nombre(),"Alma de diamante")
                                 }
-                                test "la canción más larga del álbum La Sole es Corazon Americano"{
-                                	assert.equals(laSole.laCancionMasLarga().nombre(),"Corazón Americano")
+                                test "la canción más larga del álbum La Sole es Eres"{
+                                	assert.equals(laSole.laCancionMasLarga().nombre(),"Eres")
                                 }
                                 test "la canción más larga del álbum especial La Familia es La Familia"{
                                 	assert.equals(especialLaFamilia.laCancionMasLarga().nombre(),"La Familia")
