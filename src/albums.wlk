@@ -1,11 +1,11 @@
 import Canciones.*
 
 class Album {
-	var canciones=[]
+	var canciones
 	var titulo
-	var fechaDeLanzamiento = new Date()
-	var unidadesQueSalieronALaVenta=0
-	var unidadesQueSeVendieron=0
+	var fechaDeLanzamiento
+	var unidadesQueSalieronALaVenta
+	var unidadesQueSeVendieron
 
 
    constructor(unTitulo,unasCanciones,unaFechaDeLanzamiento,unasunidadesQueSalieronALaVenta,unasunidadesQueSeVendieron) {
@@ -15,6 +15,7 @@ class Album {
 	unidadesQueSalieronALaVenta=unasunidadesQueSalieronALaVenta
 	unidadesQueSeVendieron=unasunidadesQueSeVendieron
    }
+   
    method canciones()=canciones
    method canciones(nuevasCanciones) {
    	self.canciones().addAll(nuevasCanciones)
@@ -51,9 +52,24 @@ class Album {
 	method unidadesQueSeVendieron(cantidad){
 		unidadesQueSeVendieron=cantidad
 	}
+	method cancionesQueContienen(unaPalabra){
+		return self.canciones().filter({cancion=>cancion.contieneUnaPalabra(unaPalabra)})
+	}
+	
 
-    method laCancionMasLarga()=self.canciones().max({cancion=>cancion.duracion()})
-    method seVendioBien()= (unidadesQueSeVendieron*100/unidadesQueSalieronALaVenta)>75
+	
+	method duracionDeAlbum(){
+		return self.canciones().sum({cancion=>cancion.duracion()})
+	}
+	method todasLasCancionesCortas(){
+		return canciones.all({cancion=>cancion.esCorta()})
+	}
+    method laCancionMasLarga(){
+    	return self.canciones().max({cancion=>cancion.longitudCancion()})
+    }
+    method porcentajeBuenaVenta()=0.75
+     
+    method seVendioBien() = unidadesQueSeVendieron > (unidadesQueSalieronALaVenta * self.porcentajeBuenaVenta())
 }
 object paraLosArboles inherits Album("Para los Arboles",[cisne,almaDeDiamante],new Date(31,03,2003),50000,49000) {}
 object justCrisantemo inherits Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28000,27500) {}
