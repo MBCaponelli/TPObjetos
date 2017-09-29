@@ -16,6 +16,8 @@ class Musico {
 		return self.precioBase() + self.precioEspecial(unaPresentacion)
 	}
 
+	
+	
 	method precioBase() = precioBase
 	
 	method precioEspecial(unaPresentacion)
@@ -63,7 +65,15 @@ class Musico {
 	
 	method laPego() = self.albums().all({ album => album.seVendioBien() })
 	
+	method ejecutaBien(unaCancion){
+		return	self.esDeAutoria(unaCancion)||self.habilidad()>60||self.interpretaBien(unaCancion)
+	}
 	
+	method interpretaBien(unaCancion)
+	
+	method esDeAutoria(unaCancion){
+		return self.albums().any({album=>album.tieneLaCancion(unaCancion)})
+	}
 }
 
 class DeGrupo inherits Musico {
@@ -89,7 +99,7 @@ class DeGrupo inherits Musico {
 		}
 	}
 
-	method interpretaBien(unaCancion) {
+	override method interpretaBien(unaCancion) {
 		return unaCancion.duracion() > 300
 	}
 
@@ -125,7 +135,7 @@ class VocalistaPopular inherits Musico {
 		}
 	}
 
-	method interpretaBien(unaCancion) {
+	override method interpretaBien(unaCancion) {
 		return self.convertirEnMinusculas(unaCancion).contains(palabraElegida)
 	}
 
@@ -162,7 +172,7 @@ paraLosArboles, justCrisantemo ] ) {
 		return guitarra.precio()
 	}
 
-	method interpretaBien(unaCancion) {
+	 override method interpretaBien(unaCancion) {
 		return true
 	}
 
