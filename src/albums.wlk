@@ -71,6 +71,12 @@ class Album {
      
     method seVendioBien() = unidadesQueSeVendieron > (unidadesQueSalieronALaVenta * self.porcentajeBuenaVenta())
 
+	method tieneLaCancion(unaCancion){
+		return self.canciones().contains(unaCancion)
+	}
+	
+	method tieneUnaCancion() = self.canciones().size()>=1
+	
 
 }
 object paraLosArboles inherits Album("Para los Arboles",[cisne,almaDeDiamante],new Date(31,03,2003),50000,49000) {}
