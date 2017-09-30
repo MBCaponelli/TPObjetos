@@ -26,33 +26,26 @@ class Cancion {
 	 
 }
 
-class Remix{
+class Remix inherits Cancion{
 	var cancion
-	var duracion
-	var letra
-	constructor(unaCancion){
+	
+	constructor(unaCancion)=super(unaCancion.nombre(),unaCancion.duracion(),unaCancion.letra()){
 		cancion=unaCancion
-		duracion=unaCancion.duracion()
+		duracion=unaCancion.duracion()*3
 		letra= "mueve tu cuerpo baby " + unaCancion.letra() + "yeah oh yeah"
 	}
 }
 
-class Mashup{
+class Mashup inherits Cancion{
 	var canciones
-	var duracion
-	var letra
-	constructor(unasCanciones){
+
+	constructor(unasCanciones, unNombre)=super(unNombre, 0, ""){
 		canciones=unasCanciones
-		duracion=self.duracion()
+		duracion=self.canciones().max({cancion => cancion.duracion()})
+		letra = self.canciones().map({cancion=> cancion.letra()}).fold("",{semilla , unaLet => semilla + unaLet + " " }).drop(1)
 		
 	}
 	method canciones()=canciones
-	
-	method duracion(){
-		return self.canciones().max({cancion=>cancion.duracion()}).duracion()
-	}
-	
-	//hacer letra
 	
 	
 }
