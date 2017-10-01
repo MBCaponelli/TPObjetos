@@ -37,50 +37,50 @@ class Presentacion {
 	method esConcurrida() {
 		return lugar.esConcurrido(fecha)
 	}
-	
-	method cantantes(nuevosCantantes){
-		cantantes=nuevosCantantes
+
+	method cantantes(nuevosCantantes) {
+		cantantes = nuevosCantantes
 	}
-	
-	method canantes()=cantantes
-	
-	method fecha()=fecha
-	
-	method fecha(nuevaFecha){
-		fecha=nuevaFecha
+
+	method cantantes() = cantantes
+
+	method fecha() = fecha
+
+	method fecha(nuevaFecha) {
+		fecha = nuevaFecha
 	}
-	
-	method fechaAnteriorASeptiembre(){
-		return fecha.month()<9
+
+	method fechaAnteriorASeptiembre() {
+		return fecha.month() < 9
 	}
 }
-class UserException inherits Exception { }
+class UserException inherits Exception {
+}
 
-object pdpalooza inherits Presentacion([],lunaPark, new Date(15,12,2017)){
-	
-	override method cantantes(nuevosCantantes){
-		if(self.tienenHabilidadMayorA(70,nuevosCantantes).negate()){
-			throw new UserException("La habiidad de cada uno de los cantantes tiene que ser mayor a 70")
-			}
-		if(self.tieneAlMenosUnaCancion(nuevosCantantes).negate()){
-			throw new presentaciones.UserException("cada cantante tiene que tenr al menos unca cancion")
-		}
-		if(self.todosCantanBienAliciaEnElPais (nuevosCantantes).negate()){
-			throw new presentaciones.UserException("todos los cantantes tiene que cantar bien Cancion de Alicia en el pais")			
-		}
-		cantantes=nuevosCantantes
-		}
-	
-	method 	tienenHabilidadMayorA(numero,nuevosCantantes){
-		return nuevosCantantes.all({cantante=>cantante.habilidad()>numero})
+object pdpalooza inherits Presentacion ( [ ] , lunaPark ,
+new Date(15, 12, 2017) ) {
+
+	method agregarCantante(unCantante) {
+		self.tieneHabilidadMayorA(70, unCantante)
+		self.tieneAlMenosUnaCancion(unCantante)
+		self.cantanBienAliciaEnElPais(cancionDeAliciaEnElPais, unCantante)
+
+		cantantes.add(unCantante)
 	}
-	
-	method todosCantanBienAliciaEnElPais(nuevosCantantes){
-		return nuevosCantantes.all({cantante=>cantante.ejecutaBien(cancionDeAliciaEnElPais)})
+
+	method tieneHabilidadMayorA(numero, unCantante) {
+		if (unCantante.habilidad() <= numero) throw
+		new Exception("La habilidad de cada uno de los cantantes tiene que ser mayor a 70")
 	}
-	
-	method tieneAlMenosUnaCancion(nuevosCantantes){
-		return nuevosCantantes.any({album=>album.tieneUnaCancion()})
+
+	method cantanBienAliciaEnElPais(cancion, unCantante) {
+		if (! unCantante.interpretaBien(cancion)) throw
+		new Exception("todos los cantantes tiene que cantar bien Cancion de Alicia en el pais")
+	}
+
+	method tieneAlMenosUnaCancion(unCantante) {
+		if (! unCantante.tieneAlMenosUnCancion()) throw
+		new Exception("cada cantante tiene que tenr al menos unca cancion")
 	}
 }
 
