@@ -7,9 +7,10 @@ class Musico {
 	var habilidadBase
 	var albums = [ ]
 	var precioBase = 0
+	
 
 	constructor(unaBanda, unaHabilidad, unosAlbums) {
-		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums
+		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums 
 	}
 
 	method cobrar(unaPresentacion) {
@@ -116,6 +117,8 @@ class DeGrupo inherits Musico {
 			return 50
 		}
 	}
+
+	
 }
 
 class VocalistaPopular inherits Musico {
@@ -158,6 +161,8 @@ class VocalistaPopular inherits Musico {
 	}
 }
 
+
+
 object luisAlberto inherits Musico ( solista , 8 , [
 paraLosArboles, justCrisantemo ] ) {
 	var guitarra = fender
@@ -192,6 +197,47 @@ paraLosArboles, justCrisantemo ] ) {
 	}
 }
 
+class Banda{
+	var musicos=[]
+	var representante
+	
+	constructor(unosMusicos , unRepresentante){
+		musicos=unosMusicos
+		representante = unRepresentante
+	}
+	method habilidad(){
+		return self.sumatoriaDeHabilidades() + self.sumatoriaDeHabilidades() * 0.1
+	}
+	
+	method sumatoriaDeHabilidades(){
+		return self.musicos().sum({musico=>musico.habilidad()})
+	}
+	
+	method musicos()=musicos
+	
+	method cobra(){
+		return self.cobroDeCantantes() + representante.cobra()
+	}
+	
+	method cobroDeCantantes(){
+		return self.musicos().sum({musico => musico.cobrar()})
+	}
+	
+	method puedeTocar(unaCancion){
+		return self.musicos().all({musico => musico.interpretaBien(unaCancion)})
+	}
+}
+
+class Representante{
+	var dineroACobrar
+	var nombre
+	
+	constructor(unNombre, unMonto){
+		nombre = unNombre
+		dineroACobrar = unMonto
+	}
+	method cobra()=dineroACobrar
+}
 object bandaX {
 	method sosGrupo() {
 		return true
