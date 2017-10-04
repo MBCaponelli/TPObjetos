@@ -1,4 +1,4 @@
-
+import Canciones.*
 object lunaPark {
 	method capacidadEn(unDia) = 9290
 
@@ -41,7 +41,7 @@ class Presentacion {
 		cantantes=nuevosCantantes
 	}
 	
-	method canantes()=cantantes
+	method cantantes()=cantantes
 	
 	method fecha()=fecha
 	
@@ -54,4 +54,8 @@ class Presentacion {
 	}
 }
 
-
+object pdpalooza inherits Presentacion([],lunaPark,new Date(15,12,2017)) {
+	method agregarCantante(unCantante) {
+		if(unCantante.cumpleLosRequisitosPdpalooza()){self.cantantes(unCantante) return self.cantantes()} else return "cantante no valido"
+	}
+}

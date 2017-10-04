@@ -1,6 +1,7 @@
 import Canciones.*
 import guitarras.*
 import albums.*
+import presentaciones.*
 
 class Musico {
 	var banda
@@ -65,6 +66,10 @@ class Musico {
 	
 	method interpretaBien(unaCancion)=self.listaDeCanciones().contains(unaCancion) || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60	
 	method interpretaBienSegunSuTipo(unaCancion)
+	method musicoConHabilidadMayorA70()=self.habilidad()>70
+	method compusoPorLoMenosUna()=self.listaDeCanciones().size()>0
+	method interpretaBienAliciaEnElPais()=self.interpretaBien(aliciaEnElPais)
+	method cumpleLosRequisitosPdpalooza()=self.musicoConHabilidadMayorA70()&& self.compusoPorLoMenosUna() && self.interpretaBienAliciaEnElPais()
 }
 
 class DeGrupo inherits Musico {
