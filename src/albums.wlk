@@ -70,7 +70,7 @@ class Album {
     method porcentajeBuenaVenta()=0.75
      
     method seVendioBien() = unidadesQueSeVendieron > (unidadesQueSalieronALaVenta * self.porcentajeBuenaVenta())
-    method obtenerMayorCancionSegunSu(unCriterio)=self.canciones().sortedBy({cancion1 , cancion2=>unCriterio.compara(cancion1, cancion2)}).first() 
+    method obtenerMayorCancion(unCriterio)=self.canciones().sortedBy({cancion1 , cancion2=>unCriterio.compara(cancion1, cancion2)}).first() 
 }
 object paraLosArboles inherits Album("Para los Arboles",[cisne,almaDeDiamante],new Date(31,03,2003),50000,49000) {}
 object justCrisantemo inherits Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28000,27500) {}
@@ -82,4 +82,8 @@ class Comparador {
 object segunSuDuracion inherits Comparador
 {
 	override method transformar(unaCancion)= unaCancion.duracion() 
+}
+object segunSuletra inherits Comparador
+{
+	override method transformar(unaCancion)= unaCancion.letra().words().size() 
 }

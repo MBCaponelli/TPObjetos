@@ -22,6 +22,9 @@ class Musico {
 	method precioEspecial(unaPresentacion)
 	
 	method habilidadBase() = habilidadBase
+	method habilidadBase(nuevaHabilidadBase){
+		habilidadBase=nuevaHabilidadBase
+	}
 
 	method albums() = albums
 

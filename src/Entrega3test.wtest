@@ -8,6 +8,8 @@ describe "Entrega 2" {
                 const laFamilia
                 const eres
                 const corazonAmericano
+                const remixLaFamilia
+                const mashupAlmaDeDiamanteCrisantemo
                 
                 const elLunaPark
                 const laTrastienda
@@ -23,6 +25,9 @@ describe "Entrega 2" {
                                laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
                                especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
                                joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50)
+                               
+                               mashupAlmaDeDiamanteCrisantemo=new Mashup([almaDeDiamante,crisantemo])
+                               remixLaFamilia=new Remix(laFamilia)
                       
                                eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
                                corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
@@ -59,6 +64,44 @@ describe "Entrega 2" {
                                  }
                                  test "luis Alberto canta bien la canción cisne" {
                                  	assert.that(luisAlberto.interpretaBien(cisne))
+                                 }
+                                  test "la cancion mas Larga de Especial La Familia es La Familia" {
+                                 	assert.equals(especialLaFamilia.obtenerMayorCancion(segunSuDuracion),laFamilia)
+                                 }
+                                 test "la cancion mas Larga del album La Sole es Corazon Americano" {
+                                 	assert.equals(laSole.obtenerMayorCancion(segunSuDuracion),corazonAmericano)
+                                 }
+                                 test "la cancion mas Larga (por letra) del album La Sole es Eres" {
+                                 	assert.equals(laSole.obtenerMayorCancion(segunSuletra),eres)
+                                 }
+                                 test "el remix de la Familia dura 792" {
+                                 	assert.equals(remixLaFamilia.duracion(),792)
+                                 }
+                                  test "el remix de la Familia tiene la letra correcta" {
+                                 	assert.equals(remixLaFamilia.letra(),"mueve tu cuelpo baby quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah")
+                                 }
+                                 test "la duracion del mashup alma de Diamante y Crisantemo es 216" {
+                                 	assert.equals(mashupAlmaDeDiamanteCrisantemo.duracion(),216)
+                                 }
+                                  test "la letra del mashup alma de Diamante y Crisantemo es correcta" {
+                                 	assert.equals(mashupAlmaDeDiamanteCrisantemo.letra(),"ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo".toLowerCase())
+                                 }
+                                 test"luis Alberto esta entre los musicos del Pdepalooza"{
+                                 	pdpalooza.agregarCantante(luisAlberto)
+                                 	assert.equals(pdpalooza.cantantes(),luisAlberto)
+                                 }
+                                 test"joaquin no esta entre los musicos del Pdepalooza"{
+                                 	assert.equals(pdpalooza.agregarCantante(joaquin),"cantante no valido")
+                                 }
+                                  test"lucia no esta entre los musicos del Pdepalooza"{
+                                 	lucia.habilidadBase(90)
+                                 	lucia.dejaElGrupo()
+                                 	assert.equals(pdpalooza.agregarCantante(lucia),"cantante no valido")
+                                 }
+                                 test"soledad esta entre los musicos del Pdepalooza"{
+                                 	soledad.habilidadBase(80)
+           
+                                 	assert.equals(pdpalooza.agregarCantante(soledad),soledad)
                                  }
                                }
                                
