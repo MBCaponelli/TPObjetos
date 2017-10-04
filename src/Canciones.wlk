@@ -25,7 +25,20 @@ class Cancion {
 	}
 	 
 }
-
+class Remix inherits Cancion {
+	constructor(unaCancion)=super(unaCancion.nombre(), unaCancion.duracion(), unaCancion.letra()){
+		duracion=unaCancion.duracion()*3
+		letra="mueve tu cuelpo baby "+unaCancion.letra() +" yeah oh yeah"
+	}
+}
+class Mashup inherits Cancion {
+	constructor(unasCanciones)=super(unasCanciones.map({cancion => cancion.nombre()}), unasCanciones.map({cancion=>cancion.duracion()}), unasCanciones.map({cancion=>cancion.letra()})){
+		duracion=unasCanciones.map({cancion=>cancion.duracion()}).max()
+		nombre=unasCanciones.map({cancion=>cancion.nombre()}).fold("",{nombre1,bloque=>nombre1+" "+bloque}).drop(1)
+		letra=unasCanciones.map({cancion=>cancion.letra()}).fold("",{unaletra,unbloque=>unaletra+" "+unbloque})
+	}
+	
+}
 
 object cisne inherits Cancion("Cisne", 312, "Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar"){}
 object almaDeDiamante inherits Cancion("Alma de diamante",216,"“Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante"){}
