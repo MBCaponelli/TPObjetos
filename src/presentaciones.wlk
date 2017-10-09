@@ -1,25 +1,11 @@
+import cantantes.*
+import presentaciones.*
 import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
 
-object lunaPark {
-	method capacidadEn(unDia) = 9290
-
-	method esConcurrido(fecha) {
-		return self.capacidadEn(fecha) > 5000
-	}
-}
-object trastienda {
-	method capacidadEn(unDia) {
-		if (unDia.dayOfWeek() != 6) {
-			return 400
-		} else {
-			return 700
-		}
-	}
-
-	method esConcurrido(fecha) {
-		return self.capacidadEn(fecha) > 5000
-	}
-}
 
 class Presentacion {
 	var cantantes
@@ -30,13 +16,17 @@ class Presentacion {
 		cantantes = unosCantantes lugar = unLugar fecha = unaFecha
 	}
 
+
+	
 	method costo() {
-		return cantantes.sum({ cantante => cantante.cobrar(self) })
+		return self.cantantes().sum({ cantante => cantante.cobrarPor(self)})
 	}
 
 	method esConcurrida() {
-		return lugar.esConcurrido(fecha)
+		return self.lugar().esConcurrido(fecha)
 	}
+	
+	method lugar() = lugar
 
 	method cantantes(nuevosCantantes) {
 		cantantes = nuevosCantantes
@@ -53,6 +43,23 @@ class Presentacion {
 	method fechaAnteriorASeptiembre() {
 		return fecha.month() < 9
 	}
+	
+	method cantaSolo(musico){
+		return cantantes == [musico]
+	}
+	
+	method cantidadDeCantantes(){
+		return self.cantantes().size()
+	}
+	
+	method magia(){
+		return self.cantantes().sum({cantante => cantante.habilidad()})
+	}
+	
+	method capacidad(){
+		return self.lugar().capacidadEn(fecha)
+	}
+	
 }
 class UserException inherits Exception {
 }

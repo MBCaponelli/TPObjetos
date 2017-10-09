@@ -1,25 +1,47 @@
+import cantantes.*
+import presentaciones.*
 import Canciones.*
 import guitarras.*
 import albums.*
+import banda.*
+import estadio.*
 
 class Musico {
 	var banda
 	var habilidadBase
 	var albums = [ ]
 	var precioBase = 0
+	var tipoDeMusico
+	var formaDeCobrar
+	
 	
 
-	constructor(unaBanda, unaHabilidad, unosAlbums) {
-		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums 
+	constructor(unaBanda, unaHabilidad, unosAlbums,unTipoDeMusico, unaFormaDeCobrar) {
+		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums  tipoDeMusico=unTipoDeMusico formaDeCobrar = unaFormaDeCobrar
+	}
+	
+	method precioBase(unPrecio){
+		precioBase=unPrecio
 	}
 
-	method cobrar(unaPresentacion) {
+	method cobroBase(unaPresentacion) {
 		return self.precioBase() + self.precioEspecial(unaPresentacion)
+	}
+	
+	method cobrarPor(unaPresentacion){
+		return self.formaDeCobrar().modificarCobro(self.cobroBase(unaPresentacion), unaPresentacion)
+	}
+	
+	method formaDeCobrar() = formaDeCobrar
+	
+	method formaDeCobrar(nuevaForma){
+		formaDeCobrar= nuevaForma
 	}
 	
 	method habilidadBase(nuevaHabilidad){
 		habilidadBase = nuevaHabilidad
 	}
+	
 
 	method precioBase() = precioBase
 
@@ -64,15 +86,19 @@ class Musico {
 	cancion.duracion() })
 
 	method laPego() = self.albums().all({ album => album.seVendioBien() })
+	
+	
 
 	method interpretaBien(unaCancion) {
 		return self.esAutorTalentoso(unaCancion) || self.ejecutaBien(unaCancion)
 	}
 
-	method ejecutaBien(unaCancion) 
+	method ejecutaBien(unaCancion) {
+		return self.tipoDeMusico().ejecutaBien(unaCancion)
+	}
 	
 	method esAutorTalentoso(cancion){ 
-    	return self.esDeAutoria(cancion) || self.habilidad()>60 
+    	return self.esDeAutoria(cancion) || self.habilidad() > 60
   	} 
   
 	method esDeAutoria(unaCancion) {
@@ -82,14 +108,128 @@ class Musico {
 	method tieneAlMenosUnCancion(){ 
     	return self.albums().any({album => album.tieneUnaCancion()}) 
   	}
+  	
+  	method tipoDeMusico() = tipoDeMusico
+  	
+  	method tipoDeMusico(nuevoTipo){
+  		tipoDeMusico = nuevoTipo
+  	}
+  	
+  	method cualesInterpretaBien(unasCanciones){
+  		return unasCanciones.filter({unaCancion => self.interpretaBien(unaCancion)}	)		// ??????
+  	}
 }
+
+class CantidadQueSePresentan{
+	var musico
+	
+	constructor(unMusico){
+		musico = unMusico
+	}
+	method modificarCobro(monto,presentacion){
+		if(presentacion.cantaSolo(musico)){
+			return monto
+		}
+		else{
+			return (monto / 2)
+		}
+	}
+}
+
+class CapacidadDelLugar{
+	var cantidadDePersonas
+	
+	
+	constructor( unaCantidadDePersonas ){
+		cantidadDePersonas = unaCantidadDePersonas
+		
+	}
+	
+	method modificarCobro(monto, unRecital){
+		if(unRecital.capacidad() > cantidadDePersonas){
+			return monto
+		}
+		else{
+			return monto - 100
+		}
+	}
+	
+}
+class ExpectativaInflacionaria{
+	
+	var fechaLimite
+	var porcentaje
+	
+	
+	constructor ( unaFechaLimite, unPorcentaje){
+		
+		fechaLimite = unaFechaLimite
+		porcentaje = unPorcentaje
+		
+	}
+	
+	method modificarCobro(monto, unRecital){
+		
+		if(unRecital.fecha() < fechaLimite){
+			return monto
+		}
+		else{
+			return self.factor() * monto
+		}
+		
+	}
+	
+	method factor(){
+		return 1 + porcentaje/100
+	}
+}
+
+object cobroTradicional{
+	method modificarCobro(monto, unRecital){
+		return monto
+	}
+}
+
+class Palabrero{
+	var palabra
+	
+	constructor(unaPalabra){
+		palabra=unaPalabra
+	}
+	method ejecutaBien(unaCancion){
+		return unaCancion.contieneUnaPalabra(palabra)
+		
+	}
+	
+}
+class Larguero{
+	var xSegundos
+	constructor(unosSegundos){
+		xSegundos=unosSegundos
+	}
+	method ejecutaBien(unaCancion){
+		return unaCancion.duracionMayorA(xSegundos)
+	}
+}
+class Imparero{
+	method ejecutaBien(unaCancion){
+		return unaCancion.tieneCantidadImparDeSegundos()
+	}
+}
+
+object musicoLuisAlberto{
+	method ejecutaBien(unaCancion){
+		return true
+	}
+} 
 
 class DeGrupo inherits Musico {
 	var plusDeHabilidad
 
-	constructor(unaBanda, unaHabilidad, unosAlbums, unPlusDeHabilidad) = super (
-	unaBanda , unaHabilidad , unosAlbums ) {
-		precioBase = 50 plusDeHabilidad = unPlusDeHabilidad
+	constructor(unaBanda, unaHabilidad, unosAlbums, unPlusDeHabilidad, unTipoDeMusico,unaFormaDeCobrar, unPrecioBase) = super (
+	unaBanda , unaHabilidad , unosAlbums,unTipoDeMusico,unaFormaDeCobrar) {
+		precioBase = unPrecioBase
+		plusDeHabilidad = unPlusDeHabilidad
 	}
 
 	override method precioBase() = precioBase
@@ -106,16 +246,8 @@ class DeGrupo inherits Musico {
 		}
 	}
 
-	override method ejecutaBien(unaCancion) {
-		return unaCancion.duracion() > 300
-	}
-
 	override method precioEspecial(unaPresentacion) {
-		if (self.estaEnGrupo()) {
-			return 0
-		} else {
-			return 50
-		}
+		return 0
 	}
 
 	
@@ -124,10 +256,13 @@ class DeGrupo inherits Musico {
 class VocalistaPopular inherits Musico {
 	var palabraElegida
 
-	constructor(unaBanda, unaHabilidad, unosAlbums, unaPalabraElegida) = super (
-	unaBanda , unaHabilidad , unosAlbums ) {
-		palabraElegida = unaPalabraElegida precioBase = 400
+	constructor(unaBanda, unaHabilidad, unosAlbums, unaPalabraElegida,unTipoDeMusico,unaFormaDeCobrar, unPrecioBase) = super (
+	unaBanda , unaHabilidad , unosAlbums,unTipoDeMusico,unaFormaDeCobrar ) {
+		palabraElegida = unaPalabraElegida 
+		precioBase = unPrecioBase
 	}
+	
+	
 
 	method palabraElejida() = palabraElegida
 	method palabraElejida(nuevaPalabraElegida) {
@@ -144,27 +279,23 @@ class VocalistaPopular inherits Musico {
 		}
 	}
 
-	override method ejecutaBien(unaCancion) {
-		return self.convertirEnMinusculas(unaCancion).contains(palabraElegida)
-	}
+	///override method ejecutaBien(unaCancion) {
+		///return self.convertirEnMinusculas(unaCancion).contains(palabraElegida)
+	//}
 
 	method convertirEnMinusculas(unaCancion) {
 		return unaCancion.letra().toLowerCase()
 	}
 
 	override method precioEspecial(unaPresentacion) {
-		if (unaPresentacion.esConcurrida()) {
-			return 100
-		} else {
-			return 0
-		}
+	return 0
 	}
 }
 
 
 
 object luisAlberto inherits Musico ( solista , 8 , [
-paraLosArboles, justCrisantemo ] ) {
+paraLosArboles, justCrisantemo ], musicoLuisAlberto, cobroTradicional) {
 	var guitarra = fender
 
 	method tocarCon(unaGuitarra) {
@@ -197,52 +328,6 @@ paraLosArboles, justCrisantemo ] ) {
 	}
 }
 
-class Banda{
-	var musicos=[]
-	var representante
-	
-	constructor(unosMusicos , unRepresentante){
-		musicos=unosMusicos
-		representante = unRepresentante
-	}
-	method habilidad(){
-		return self.sumatoriaDeHabilidades() + self.sumatoriaDeHabilidades() * 0.1
-	}
-	
-	method sumatoriaDeHabilidades(){
-		return self.musicos().sum({musico=>musico.habilidad()})
-	}
-	
-	method musicos()=musicos
-	
-	method cobra(){
-		return self.cobroDeCantantes() + representante.cobra()
-	}
-	
-	method cobroDeCantantes(){
-		return self.musicos().sum({musico => musico.cobrar()})
-	}
-	
-	method puedeTocar(unaCancion){
-		return self.musicos().all({musico => musico.interpretaBien(unaCancion)})
-	}
-}
-
-class Representante{
-	var dineroACobrar
-	var nombre
-	
-	constructor(unNombre, unMonto){
-		nombre = unNombre
-		dineroACobrar = unMonto
-	}
-	method cobra()=dineroACobrar
-}
-object bandaX {
-	method sosGrupo() {
-		return true
-	}
-}
 
 object pimpinela {
 	method sosGrupo() {

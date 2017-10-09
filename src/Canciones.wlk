@@ -17,11 +17,19 @@ class Cancion {
 	}
 	
 	method contieneUnaPalabra(unaPalabra){
-		return self.letra().toLoweCase().words().contains(unaPalabra)
+		return self.letra().toLowerCase().words().contains(unaPalabra)
 	}
 	
 	method longitudCancion(){
 		return self.letra().words().size()
+	}
+	
+	method duracionMayorA(xSegundos){
+		return self.duracion()>xSegundos
+	}
+	
+	method tieneCantidadImparDeSegundos(){
+		return self.duracion().odd()
 	}
 	 
 }

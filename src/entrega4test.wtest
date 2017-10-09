@@ -1,0 +1,167 @@
+import cantantes.*
+import presentaciones.*
+import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
+
+
+describe "Entrega 4" {
+                const laFamilia
+                const eres
+                const corazonAmericano
+                
+               const pimpisole
+               const cachorro
+                
+                const elEternoRetorno
+                const felix
+                
+                const joaquin 
+                const lucia
+        
+                const soledad
+                const kike 
+                
+                const laSole
+                const especialLaFamilia
+                const prixdami
+                const remixLaFamilia 
+                
+                const almaDeDiamanteYCrisantemo
+                
+                const lacueva
+                
+                fixture { luisAlberto.tocarCon(fender)
+                			 
+                			
+                				
+                               laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+                               especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
+                              
+                               joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],5,new Larguero(300), new CantidadQueSePresentan(self),100)
+                      
+                               eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+                               corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+                               laSole= new Album("La Sole",[eres,corazonAmericano],new Date(04,02,2005),200000,130000)
+                             
+                               
+                               soledad= new VocalistaPopular(solista,55,[laSole],"amor", new Palabrero("amor"), new CantidadQueSePresentan(self), 6000)
+                              kike= new DeGrupo(bandaX,60,[],20, new Imparero(), new ExpectativaInflacionaria( new Date(08,01,2018), 50), 4000)
+                               
+                               lucia= new VocalistaPopular(pimpinela,70,[],"familia", new Palabrero("familia"), new CapacidadDelLugar(5000),500)
+                               
+                             
+                             cachorro = new Representante("cachorro", 1982)
+                              felix = new Representante("felix", 500)
+                              elEternoRetorno = new Banda([kike, luisAlberto], felix)
+                              pimpisole = new Banda([soledad, joaquin, lucia], cachorro)
+                                lacueva = new Presentacion( [ pimpisole], laCueva , new Date(05,01,2018))
+                               remixLaFamilia = new Remix(laFamilia)
+                               
+                              
+                               prixdami = new Presentacion([joaquin, soledad, elEternoRetorno], prixDAmi, new Date(30,06,2017))
+                               almaDeDiamanteYCrisantemo= new Mashup([almaDeDiamante , crisantemo], "alma de diamante y crisantemo")
+                              
+                               }
+                            
+                            test"Joaquín siendo imparero interpreta bien la canción “La Familia”"{
+                            	joaquin.tipoDeMusico(new Imparero())
+                            	assert.that(joaquin.interpretaBien(laFamilia))
+                            }
+                            
+                            test"Joaquin siendo imparero no interpreta bien la cancion Cisne"{
+                            	joaquin.tipoDeMusico(new Imparero())
+                            	joaquin.habilidadBase(0)							
+                            	assert.notThat(joaquin.interpretaBien(cisne))
+                            }
+                            
+                            test"kike siendo palabrero de 'de' canta bien ciertas canciones"{
+                            	kike.tipoDeMusico(new Palabrero("de"))
+                            	kike.habilidadBase(20)
+                            	assert.equals(kike.cualesInterpretaBien([corazonAmericano, eres,laFamilia,cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]), [corazonAmericano, eres, almaDeDiamante, crisantemo])
+                            	
+                            }
+                            
+                            test"joaquin canta bien ciertas canciones"{
+                            	joaquin.habilidadBase(0)
+                            	assert.equals(joaquin.cualesInterpretaBien([corazonAmericano, eres, laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais]), ([laFamilia, cisne, cancionDeAliciaEnElPais]))
+                            }
+                            
+                            test"joaquin siendo palabrero de la plabra ' xilofon ' canta bien ciertas canciones"{
+                            	joaquin.tipoDeMusico(new Palabrero("xilofon"))
+                            	joaquin.habilidadBase(0)
+                            	assert.equals(joaquin.cualesInterpretaBien([corazonAmericano, eres,laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]) , [laFamilia])
+                            }
+                            
+                            test"lucia siendo imparera canta bien ciertas canciones"{
+                            	lucia.tipoDeMusico(new Imparero())
+                            	assert.equals(lucia.cualesInterpretaBien([corazonAmericano, eres,laFamilia, cisne, almaDeDiamante, cancionDeAliciaEnElPais, crisantemo]) , [eres,crisantemo])
+                            }
+                              test"Joaquín pasa a cobrar por expectativa inflacionaria ($ 1000 y a partir de febrero del 2017 un 20% más). Averiguar cuánto cobra por la presentación de Prix D’Ami"{
+                            	joaquin.precioBase(1000)
+                            	joaquin.formaDeCobrar(new ExpectativaInflacionaria(new Date(01,02,2017), 20))
+                            	assert.equals(joaquin.cobrarPor(prixdami), 1200)
+                            }
+                            
+                             test"Joaquin cobra $1000 si cobra por expectativa inflacionaria y la fecha del prixD Ami cambia para 24/01/2017"{
+                            	prixdami.fecha(new Date(24,01,2017))
+                            	joaquin.precioBase(1000)
+                            	joaquin.formaDeCobrar(new ExpectativaInflacionaria(new Date(01,02,2017), 20))
+                            	assert.equals(joaquin.cobrarPor(prixdami), 1000)
+                            	
+                            }
+                            
+                            test"Joaquin cobra 50 por la presentacion en Prix D'Ami"{
+                            	assert.equals(joaquin.cobrarPor(prixdami), 50)
+                            }
+                            
+                            test"Joaquin cobra $2400 por el Prix D'Ami si su precio base es $2500 y cobra por capacidad hasta 13000 personas"{
+                            	joaquin.precioBase(2400)
+                            	joaquin.formaDeCobrar(new CapacidadDelLugar(13000))
+                            	assert.equals(joaquin.cobrarPor(prixdami), 2400)
+                            }
+                            
+                            test"joaquin cobra $2500 en La Cuea si su precio  base es 2500 y cobra por capacidad de 13000"{
+                            	joaquin.precioBase(2500)
+                            	joaquin.formaDeCobrar(new CapacidadDelLugar(13000))
+                            	assert.equals(joaquin.cobrarPor(lacueva), 2500)
+                            }
+                            
+                            test" el eterno retorno cobra $5500 por el show de prix D'Ami"{
+                            	assert.equals(elEternoRetorno.cobrarPor(prixdami), 5500)
+                            }
+                            
+                            test"el productor del show prix D'Ami cobra $8550"{
+                            	assert.equals(prixdami.costo(), 8550)
+                            }
+                            
+                            test"el productor de la cueva cobra $ 5.532"{
+                            	assert.equals(lacueva.costo(), 5532)
+                            }
+                            
+                           test" la habilidad del eterno retorno es 154"{
+                            	assert.equals(elEternoRetorno.habilidad(), 176)
+                            }
+                            
+                            test"La magia del prix D'Ami es 256"{
+                            	assert.equals(prixdami.magia(), 256)
+                            }
+                            
+                            test"pimpisole no toca bien cisne"{
+                            	assert.notThat(pimpisole.puedeTocar(cisne))
+                            }
+                            
+                            test"el eterno retorno puede tocar bien crisantemo"{
+                            	assert.that(elEternoRetorno.puedeTocar(crisantemo))
+                            }
+                            
+                          
+                            
+                           
+                           
+        
+
+         }
+                      
