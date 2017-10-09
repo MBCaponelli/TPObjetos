@@ -9,8 +9,8 @@ class Musico {
 	var albums = [ ]
 	var precioBase = 0
 	
-	constructor(unaBanda, unaHabilidad, unosAlbums) {
-		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums
+	constructor(unaBanda, unaHabilidad, unosAlbums, unPrecioBase) {
+		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums precioBase=unPrecioBase
 	}
 
 	method cobrar(unaPresentacion) {
@@ -38,10 +38,7 @@ class Musico {
 
 	method habilidadEnGrupo()
 	
-	method listaDeLetras() =
-	self.listaDeCanciones().map({ cancion => cancion.letra() })
-	method listaDeCanciones() = self.albums().map({ album => album.canciones()
-	}).flatten()
+	
 
 	method dejaElGrupo() {
 		self.banda(solista)
@@ -62,15 +59,13 @@ class Musico {
 		return self.albums().map({album => album.cancionesQueContienen(unaPalabra)}).flatten()
 	}
 	
-	method duracionDeLaObra() = self.listaDeCanciones().sum({ cancion =>
-	cancion.duracion() })
 	
 	method laPego() = self.albums().all({ album => album.seVendioBien() })
 	
-	method interpretaBien(unaCancion)=self.listaDeCanciones().contains(unaCancion) || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60	
+	method interpretaBien(unaCancion)=self.albums().size()>0 || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60	
 	method interpretaBienSegunSuTipo(unaCancion)
 	method musicoConHabilidadMayorA70()=self.habilidad()>70
-	method compusoPorLoMenosUna()=self.listaDeCanciones().size()>0
+	method compusoPorLoMenosUna()=self.albums().size()>0
 	method interpretaBienAliciaEnElPais()=self.interpretaBien(aliciaEnElPais)
 	method cumpleLosRequisitosPdpalooza()=self.musicoConHabilidadMayorA70()&& self.compusoPorLoMenosUna() && self.interpretaBienAliciaEnElPais()
 }
@@ -78,9 +73,8 @@ class Musico {
 class DeGrupo inherits Musico {
 	var plusDeHabilidad
 
-	constructor(unaBanda, unaHabilidad, unosAlbums, unPlusDeHabilidad) =
-	super ( unaBanda , unaHabilidad , unosAlbums ) {
-		precioBase = 50 
+	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase, unPlusDeHabilidad) =
+	super ( unaBanda , unaHabilidad , unosAlbums,unPrecioBase ) { 
 		plusDeHabilidad = unPlusDeHabilidad
 	}
 
@@ -114,9 +108,8 @@ class DeGrupo inherits Musico {
 class VocalistaPopular inherits Musico {
 	var palabraElegida
 	
-	constructor(unaBanda, unaHabilidad, unosAlbums,unaPalabraElegida)=super(unaBanda, unaHabilidad, unosAlbums){
+	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaPalabraElegida)=super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase){
 		palabraElegida=unaPalabraElegida
-		precioBase=400
 	}
 	
 	method palabraElejida() = palabraElegida
@@ -152,7 +145,7 @@ class VocalistaPopular inherits Musico {
 }
 
 object luisAlberto inherits Musico ( solista , 8 , [
-paraLosArboles, justCrisantemo ] ) {
+paraLosArboles, justCrisantemo ],1000 ) {
 	var guitarra = fender
 	
 
@@ -175,7 +168,6 @@ paraLosArboles, justCrisantemo ] ) {
 		return true
 	}
 
-	override method precioBase() = 1000
 
 	override method precioEspecial(unaPresentacion) {
 		if (unaPresentacion.fechaAnteriorASeptiembre()) {

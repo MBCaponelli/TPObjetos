@@ -24,45 +24,45 @@ describe "Entrega 2" {
                 fixture {
                                laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
                                especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
-                               joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50)
+                               joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50,50)
                                
                                mashupAlmaDeDiamanteCrisantemo=new Mashup([almaDeDiamante,crisantemo])
                                remixLaFamilia=new Remix(laFamilia)
                       
-                               eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
-                               corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+                               eres= new Cancion("Eres",145,"Eres lo mejor que me pasï¿½ en la vida, no tengo duda, no habrï¿½ mï¿½s nada despuï¿½s de ti. Eres lo que le dio brillo al dï¿½a a dï¿½a, y asï¿½ serï¿½ por siempre, no cambiarï¿½, hasta el final de mis dï¿½as.")
+                               corazonAmericano= new Cancion("Corazï¿½n Americano",154,"Canta corazï¿½n, canta mï¿½s alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazï¿½n, como soï¿½amos.")
                                laSole= new Album("La Sole",[eres,corazonAmericano],new Date(04,02,2005),200000,130000)
-                               kike= new DeGrupo(bandaX,60,[],20)
+                               kike= new DeGrupo(bandaX,60,[],50,20)
                                
-                               soledad= new VocalistaPopular(solista,55,[laSole],"amor")
+                               soledad= new VocalistaPopular(solista,55,[laSole],400,"amor")
                               
                                
-                               lucia= new VocalistaPopular(pimpinela,70,[],"familia")
+                               lucia= new VocalistaPopular(pimpinela,70,[],400,"familia")
                                
                              
                                elLunaPark = new Presentacion([ luisAlberto, joaquin, lucia], lunaPark, new Date(20, 04, 2017)) laTrastienda = new Presentacion([
                                luisAlberto, joaquin, lucia ], trastienda, new Date(15, 11, 2017))
                                }
-                                 test "Joaquín canta bien la canción La Familia" {
+                                 test "Joaquin canta bien la cancion La Familia" {
                                  	assert.that(joaquin.interpretaBien(laFamilia))
                                  }
-                                 test "Joaquín canta bien la canción Cisne" {
+                                 test "Joaquï¿½n canta bien la canciï¿½n Cisne" {
                                  	assert.that(joaquin.interpretaBien(cisne))
                                  }
-                                 test "lucia canta bien la canción La Familia" {
+                                 test "lucia canta bien la canciï¿½n La Familia" {
                                  	assert.that(lucia.interpretaBien(laFamilia))
                                  }
-                                 test "lucia canta bien la canción cisne de Solista" {
+                                 test "lucia canta bien la canciï¿½n cisne de Solista" {
                                  	lucia.dejaElGrupo()
                                  	assert.that(lucia.interpretaBien(cisne))
                                  }
-                                  test "lucia canta mal la canción cisne" {
+                                  test "lucia canta mal la canciï¿½n cisne" {
                                  	assert.notThat(lucia.interpretaBien(cisne))
                                  }
-                                 test "luis Alberto canta bien la canción La Familia" {
+                                 test "luis Alberto canta bien la canciï¿½n La Familia" {
                                  	assert.that(luisAlberto.interpretaBien(laFamilia))
                                  }
-                                 test "luis Alberto canta bien la canción cisne" {
+                                 test "luis Alberto canta bien la canciï¿½n cisne" {
                                  	assert.that(luisAlberto.interpretaBien(cisne))
                                  }
                                   test "la cancion mas Larga de Especial La Familia es La Familia" {
@@ -84,7 +84,7 @@ describe "Entrega 2" {
                                  	assert.equals(mashupAlmaDeDiamanteCrisantemo.duracion(),216)
                                  }
                                   test "la letra del mashup alma de Diamante y Crisantemo es correcta" {
-                                 	assert.equals(mashupAlmaDeDiamanteCrisantemo.letra(),"ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo".toLowerCase())
+                                 	assert.equals(mashupAlmaDeDiamanteCrisantemo.letra(),"ven a mï¿½ con tu dulce luz alma de diamante. Y aunque el sol se nuble despuï¿½s sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asï¿½ con la humanidad alma de diamante Tï¿½came junto a esta pared, yo quede por aquï¿½... cuando no hubo mï¿½s luz... quiero mirar a travï¿½s de mi piel... Crisantemo, que se abriï¿½... encuentra el camino hacia el cielo".toLowerCase())
                                  }
                                  test"luis Alberto esta entre los musicos del Pdepalooza"{
                                  	pdpalooza.agregarCantante(luisAlberto)
