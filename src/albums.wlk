@@ -1,4 +1,12 @@
+import cantantes.*
+import presentaciones.*
 import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 class Album {
 	var canciones
@@ -70,6 +78,66 @@ class Album {
     method porcentajeBuenaVenta()=0.75
      
     method seVendioBien() = unidadesQueSeVendieron > (unidadesQueSalieronALaVenta * self.porcentajeBuenaVenta())
+
+	method tieneLaCancion(unaCancion){
+		return self.canciones().contains(unaCancion)
+	}
+	
+	method tieneUnaCancion() = !self.canciones().isEmpty()
+ 
+ 	method mayorCancionSegun(unCriterio){
+ 
+    	return self.canciones().sortedBy({cancion1, cancion2 => unCriterio.comparar(cancion1, cancion2)}).first()
+ 
+	  }
+ 
+
+ 
 }
+
+class Comparador {
+ 
+  method comparar(cancion1,cancion2){
+ 
+    return self.transformar(cancion1) > self.transformar(cancion2)
+ 
+  }
+  
+  method transformar(cancion)
+ 
+}
+
+object criterioTamanoLetra inherits Comparador{
+ 
+    override method transformar(cancion){
+ 
+    	return cancion.letra().size()
+ 	}
+ 
+}
+ 
+
+object criterioTitulo inherits Comparador{
+	
+  override method transformar(cancion){
+ 
+    return cancion.nombre().size()
+ 
+  }  
+ 
+}
+   
+object criterioDuracion inherits Comparador{
+ 
+  override method transformar (cancion){
+ 
+    return cancion.duracion()
+ 
+  }
+ 
+}
+ 	
+
+
 object paraLosArboles inherits Album("Para los Arboles",[cisne,almaDeDiamante],new Date(31,03,2003),50000,49000) {}
 object justCrisantemo inherits Album("justCrisantemo",[crisantemo],new Date(05,12,2007),28000,27500) {}

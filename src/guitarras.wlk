@@ -1,3 +1,12 @@
+import cantantes.*
+import presentaciones.*
+import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 object fender {
                 method precio() = 10

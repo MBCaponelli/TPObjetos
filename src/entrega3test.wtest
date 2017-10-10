@@ -1,0 +1,118 @@
+import cantantes.*
+import presentaciones.*
+import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
+
+describe "Entrega 3" {
+                const laFamilia
+                const eres
+                const corazonAmericano
+                
+               
+                
+                const joaquin 
+                const lucia
+        
+                const soledad
+                
+                const laSole
+                const especialLaFamilia
+                
+                const remixLaFamilia 
+                
+                const almaDeDiamanteYCrisantemo
+                fixture {
+                               laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+                               especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
+                              joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],5,new Larguero(300), new CantidadQueSePresentan(self),100)
+                      
+                               eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+                               corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta más alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+                               laSole= new Album("La Sole",[eres,corazonAmericano],new Date(04,02,2005),200000,130000)
+                              
+                               
+                              soledad= new VocalistaPopular(solista,55,[laSole],"amor", new Palabrero("amor"), new CantidadQueSePresentan(self), 6000)
+                              
+                               
+                               lucia= new VocalistaPopular(pimpinela,70,[],"familia", new Palabrero("familia"), new CapacidadDelLugar(5000),500)
+                               
+                             
+                              
+                               
+                               remixLaFamilia = new Remix(laFamilia)
+                               
+                               almaDeDiamanteYCrisantemo= new Mashup([almaDeDiamante , crisantemo], "alma de diamante y crisantemo")
+                               }
+                    
+                     test "La Familia es la cancion más larga del álbum “Especial La Familia”, teniendo en cuenta la duración"{
+                     	assert.equals(especialLaFamilia.mayorCancionSegun(criterioDuracion), laFamilia)
+                     }
+                     
+                     test"Corazon americano es la canción más larga del álbum “La Sole”, teniendo en cuenta la duración"{
+                     	assert.equals(laSole.mayorCancionSegun(criterioDuracion), corazonAmericano)
+                     }
+                     
+                     test"Eres es la canción más larga del álbum “La Sole”, teniendo en cuenta la longitud de la letra"{
+                     	assert.equals(laSole.mayorCancionSegun(criterioTamanoLetra), eres)
+                     }
+                     
+                     test"El remix de la Familia dura 792 segundos"{
+                     	
+                     	assert.equals(remixLaFamilia.duracion(), 792)
+                     }
+                     
+                     test "La letra del remix de la familia es la correcta"{
+                     	const letraremix= "mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah"
+                     	assert.equals(remixLaFamilia.letra(), letraremix)
+                     }
+                     
+                     test" La duración del mashup de “Alma de Diamante” y  “Crisantemo” es 216 "{
+                     	assert.equals(almaDeDiamanteYCrisantemo.duracion(), 216)                     	
+                     }
+                     test"La letra del mashup de “Alma de Diamante” y  “Crisantemo” es la correcta"{
+                     	const letramashup="Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo "
+						assert.equals(almaDeDiamanteYCrisantemo.letra(), letramashup)                     
+                     }
+                     
+                     test"Es posible agregar a luis Alberto al pdpalooza "{
+                     	pdpalooza.agregarCantante(luisAlberto)
+                     	assert.equals(pdpalooza.cantantes(), [luisAlberto])
+                     }
+                     
+                     test" No es posible agregar a Joaquin al pdpalooza"{
+                     	const mensajeDeError =  "La habilidad de cada uno de los cantantes tiene que ser mayor a 70"
+                     	
+                     	const bloqueQueDebeExplotar = {=>
+                     		pdpalooza.tieneHabilidadMayorA(70, joaquin)
+                     	}
+                     	
+                     	assert.throwsExceptionWithMessage(mensajeDeError,bloqueQueDebeExplotar)
+                     	
+                       }
+                       
+                       test " No es posible agregar a lucia al pdpalooza con su habilidad base 90 y tocando como solista" {
+                       	lucia.habilidadBase(90)
+                       	lucia.dejaElGrupo()
+                       	
+                       	const bloqueAExplotar = {=> pdpalooza.agregarCantante(lucia)}
+                       	const mensajeConError = "cada cantante tiene que tenr al menos unca cancion"
+                       	
+                       	assert.throwsExceptionWithMessage(mensajeConError,bloqueAExplotar)
+                       	
+                       }
+                       
+                       test"Es posible agregar a Soledad al pdpalooza con habilidad (base) 80 "{
+                       	soledad.habilidadBase(80)
+                       	pdpalooza.agregarCantante(soledad)
+                       	assert.equals(pdpalooza.cantantes(), [soledad])
+                       }
+                  }
+                               
+                               
+                               
+                   
