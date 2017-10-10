@@ -3,9 +3,13 @@ import presentaciones.*
 import Canciones.*
 import guitarras.*
 import albums.*
+import banda.*
+import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 class Banda{
-	var musicos=[]
+	var musicos
 	var representante
 	
 	constructor(unosMusicos , unRepresentante){
@@ -21,10 +25,10 @@ class Banda{
 		return self.musicos().sum({musico=>musico.habilidad()})
 	}
 	
-	method musicos()=musicos
+	method musicos() = musicos
 	
 	method cobrarPor(unaPresentacion){
-		return self.cobroDeCantantes(unaPresentacion) +( representante.cobra())
+		return (self.cobroDeCantantes(unaPresentacion)) +( representante.cobra())
 	}
 	
 	method cobroDeCantantes(unaPresentacion){
@@ -36,6 +40,7 @@ class Banda{
 	}
 }
 
+
 class Representante{
 	var dineroACobrar
 	var nombre
@@ -44,11 +49,6 @@ class Representante{
 		nombre = unNombre
 		dineroACobrar = unMonto
 	}
-	method dinero() =dineroACobrar
-	method cobra()=self.dinero()
-}
-object bandaX {
-	method sosGrupo() {
-		return true
-	}
+	
+	method cobra()= dineroACobrar
 }

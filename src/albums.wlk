@@ -1,4 +1,12 @@
+import cantantes.*
+import presentaciones.*
 import Canciones.*
+import guitarras.*
+import albums.*
+import banda.*
+import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 class Album {
 	var canciones

@@ -5,6 +5,8 @@ import guitarras.*
 import albums.*
 import banda.*
 import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 
 class Presentacion {
@@ -45,7 +47,7 @@ class Presentacion {
 	}
 	
 	method cantaSolo(musico){
-		return cantantes == [musico]
+		return self.cantantes() ==[musico] 
 	}
 	
 	method cantidadDeCantantes(){

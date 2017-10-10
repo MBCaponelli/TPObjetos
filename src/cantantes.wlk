@@ -5,6 +5,8 @@ import guitarras.*
 import albums.*
 import banda.*
 import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 class Musico {
 	var banda
@@ -116,112 +118,10 @@ class Musico {
   	}
   	
   	method cualesInterpretaBien(unasCanciones){
-  		return unasCanciones.filter({unaCancion => self.interpretaBien(unaCancion)}	)		// ??????
+  		return unasCanciones.filter({unaCancion => self.interpretaBien(unaCancion)}	)		
   	}
 }
 
-class CantidadQueSePresentan{
-	var musico
-	
-	constructor(unMusico){
-		musico = unMusico
-	}
-	method modificarCobro(monto,presentacion){
-		if(presentacion.cantaSolo(musico)){
-			return monto
-		}
-		else{
-			return (monto / 2)
-		}
-	}
-}
-
-class CapacidadDelLugar{
-	var cantidadDePersonas
-	
-	
-	constructor( unaCantidadDePersonas ){
-		cantidadDePersonas = unaCantidadDePersonas
-		
-	}
-	
-	method modificarCobro(monto, unRecital){
-		if(unRecital.capacidad() > cantidadDePersonas){
-			return monto
-		}
-		else{
-			return monto - 100
-		}
-	}
-	
-}
-class ExpectativaInflacionaria{
-	
-	var fechaLimite
-	var porcentaje
-	
-	
-	constructor ( unaFechaLimite, unPorcentaje){
-		
-		fechaLimite = unaFechaLimite
-		porcentaje = unPorcentaje
-		
-	}
-	
-	method modificarCobro(monto, unRecital){
-		
-		if(unRecital.fecha() < fechaLimite){
-			return monto
-		}
-		else{
-			return self.factor() * monto
-		}
-		
-	}
-	
-	method factor(){
-		return 1 + porcentaje/100
-	}
-}
-
-object cobroTradicional{
-	method modificarCobro(monto, unRecital){
-		return monto
-	}
-}
-
-class Palabrero{
-	var palabra
-	
-	constructor(unaPalabra){
-		palabra=unaPalabra
-	}
-	method ejecutaBien(unaCancion){
-		return unaCancion.contieneUnaPalabra(palabra)
-		
-	}
-	
-}
-class Larguero{
-	var xSegundos
-	constructor(unosSegundos){
-		xSegundos=unosSegundos
-	}
-	method ejecutaBien(unaCancion){
-		return unaCancion.duracionMayorA(xSegundos)
-	}
-}
-class Imparero{
-	method ejecutaBien(unaCancion){
-		return unaCancion.tieneCantidadImparDeSegundos()
-	}
-}
-
-object musicoLuisAlberto{
-	method ejecutaBien(unaCancion){
-		return true
-	}
-} 
 
 class DeGrupo inherits Musico {
 	var plusDeHabilidad
@@ -288,7 +188,7 @@ class VocalistaPopular inherits Musico {
 	}
 
 	override method precioEspecial(unaPresentacion) {
-	return 0
+		return 0
 	}
 }
 
@@ -341,4 +241,9 @@ object solista {
 	}
 }
 
+object bandaX {
+	method sosGrupo() {
+		return true
+	}
+}
  

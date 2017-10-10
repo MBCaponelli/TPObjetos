@@ -5,6 +5,8 @@ import guitarras.*
 import albums.*
 import banda.*
 import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 describe "Entrega 2" {
                 const laFamilia

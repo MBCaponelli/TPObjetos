@@ -5,6 +5,8 @@ import guitarras.*
 import albums.*
 import banda.*
 import estadio.*
+import formasDeCobrar.*
+import tipoMusico.*
 
 class Estadio{
 	var nombre
@@ -14,7 +16,7 @@ class Estadio{
 		nombre = unNombre
 		capacidadBase = unaCapacidad
 	}
-	method capacidadEn(unDia) = unaCapacidad
+	method capacidadEn(unDia) = capacidadBase
 	
 	method esConcurrido(fecha){
 		return self.capacidadEn(fecha) > 5000
