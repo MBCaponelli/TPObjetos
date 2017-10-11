@@ -36,7 +36,7 @@ class Musico {
 		return self.habilidadBase() + self.habilidadEnGrupo()
 	}
 
-	method habilidadEnGrupo()
+	method habilidadEnGrupo(){return 0}
 	
 	
 
@@ -63,11 +63,24 @@ class Musico {
 	method laPego() = self.albums().all({ album => album.seVendioBien() })
 	
 	method interpretaBien(unaCancion)=self.albums().size()>0 || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60	
+	
 	method interpretaBienSegunSuTipo(unaCancion)
-	method musicoConHabilidadMayorA70()=self.habilidad()>70
-	method compusoPorLoMenosUna()=self.albums().size()>0
-	method interpretaBienAliciaEnElPais()=self.interpretaBien(aliciaEnElPais)
-	method cumpleLosRequisitosPdpalooza()=self.musicoConHabilidadMayorA70()&& self.compusoPorLoMenosUna() && self.interpretaBienAliciaEnElPais()
+	
+	method musicoConHabilidadMayorA70() {
+		return self.habilidad()>70
+		}
+	
+	method compusoPorLoMenosUna() {
+		return self.albums().size()>0 
+		}
+	
+	method interpretaBienAliciaEnElPais(){
+		return self.interpretaBien(aliciaEnElPais)
+		}
+	
+	method cumpleLosRequisitosPdpalooza() {
+		return self.musicoConHabilidadMayorA70()&& self.compusoPorLoMenosUna() && self.interpretaBienAliciaEnElPais()
+		}
 }
 
 class DeGrupo inherits Musico {
@@ -128,12 +141,10 @@ class VocalistaPopular inherits Musico {
 	}
 
 	override method interpretaBienSegunSuTipo(unaCancion) {
-		return self.convertirEnMinusculas(unaCancion).contains(palabraElegida)
+		return unaCancion.contieneUnaPalabra(palabraElegida)
 	}
 
-	method convertirEnMinusculas(unaCancion) {
-		return unaCancion.letra().toLowerCase()
-	}
+	
 
 	override method precioEspecial(unaPresentacion) {
 		if (unaPresentacion.esConcurrida()) {
@@ -153,9 +164,6 @@ paraLosArboles, justCrisantemo ],1000 ) {
 		guitarra = unaGuitarra
 	}
 
-	override method habilidadEnGrupo() {
-		return 0
-	}
 	override method habilidad() {
 		return (super()*self.habilidadDeLaGuitarra()).min(100)
 	}
