@@ -55,7 +55,35 @@ class Presentacion {
 }
 
 object pdpalooza inherits Presentacion([],lunaPark,new Date(15,12,2017)) {
+	var condiciones=[habilidadMayorA70,compusoPorLoMenosUna,interpretaBienAlicia]
 	method agregarCantante(unCantante) {
-		if(unCantante.cumpleLosRequisitosPdpalooza()){self.cantantes(unCantante) return self.cantantes()} else return "cantante no valido"
+		if(condiciones.all({condicion => condicion.seCumplePara(unCantante)})){
+			self.cantantes().add(unCantante)
+		}
 	}
+}
+class CondicionesPdpalooza{
+	method seCumplePara(unCantante)
+}
+
+object habilidadMayorA70 inherits CondicionesPdpalooza{
+	override method seCumplePara(unCantante) {
+		if(unCantante.habilidad()<70) {
+			throw new Exception("habilidad menor a 70")
+		}else {return true}
+		}
+}
+object compusoPorLoMenosUna inherits CondicionesPdpalooza{
+	override method seCumplePara(unCantante) {
+		if(unCantante.albums().size()==0) {
+			throw new Exception("no compuso nada")
+		}else {return true}
+		}
+}
+object interpretaBienAlicia inherits CondicionesPdpalooza{
+	override method seCumplePara(unCantante) {
+		if(!unCantante.interpretaBien(aliciaEnElPais)) {
+			throw new Exception("no interpreta bien Alicia")
+		}else {return true}
+		}
 }

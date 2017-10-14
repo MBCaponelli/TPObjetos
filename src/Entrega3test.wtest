@@ -4,7 +4,7 @@ import Canciones.*
 import guitarras.*
 import albums.*
 
-describe "Entrega 2" {
+describe "Entrega 3" {
                 const laFamilia
                 const eres
                 const corazonAmericano
@@ -88,20 +88,22 @@ describe "Entrega 2" {
                                  }
                                  test"luis Alberto esta entre los musicos del Pdepalooza"{
                                  	pdpalooza.agregarCantante(luisAlberto)
-                                 	assert.equals(pdpalooza.cantantes(),luisAlberto)
+                                 	assert.that(pdpalooza.cantantes().contains(luisAlberto))
                                  }
-                                 test"joaquin no esta entre los musicos del Pdepalooza"{
-                                 	assert.equals(pdpalooza.agregarCantante(joaquin),"cantante no valido")
+                                 test"joaquin no esta entre los musicos del Pdepalooza porque <70"{
+                                 	pdpalooza.agregarCantante(joaquin)
+                                 	assert.throwsException("habilidad menor a 70")
                                  }
-                                  test"lucia no esta entre los musicos del Pdepalooza"{
+                                  test"lucia no esta entre los musicos del Pdepalooza porque no compuso nada"{
                                  	lucia.habilidadBase(90)
                                  	lucia.dejaElGrupo()
-                                 	assert.equals(pdpalooza.agregarCantante(lucia),"cantante no valido")
+                                 	pdpalooza.agregarCantante(lucia)
+                                 	assert.throwsException("no compuso nada")
                                  }
                                  test"soledad esta entre los musicos del Pdepalooza"{
                                  	soledad.habilidadBase(80)
-           
-                                 	assert.equals(pdpalooza.agregarCantante(soledad),soledad)
+                                    pdpalooza.agregarCantante(soledad)
+                                 	assert.that(pdpalooza.cantantes().contains(soledad))
                                  }
                                }
                                

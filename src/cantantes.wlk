@@ -36,7 +36,7 @@ class Musico {
 		return self.habilidadBase() + self.habilidadEnGrupo()
 	}
 
-	method habilidadEnGrupo(){return 0}
+	method habilidadEnGrupo()
 	
 	
 
@@ -62,25 +62,16 @@ class Musico {
 	
 	method laPego() = self.albums().all({ album => album.seVendioBien() })
 	
-	method interpretaBien(unaCancion)=self.albums().size()>0 || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60	
+	method interpretaBien(unaCancion) {
+		return self.esAutorDe(unaCancion) || self.interpretaBienSegunSuTipo(unaCancion) || self.habilidad()>60
+		}	
+	
+	method esAutorDe(unaCancion){
+		return self.albums().any({album => album.contieneAUnaCancion(unaCancion)})
+	}
 	
 	method interpretaBienSegunSuTipo(unaCancion)
 	
-	method musicoConHabilidadMayorA70() {
-		return self.habilidad()>70
-		}
-	
-	method compusoPorLoMenosUna() {
-		return self.albums().size()>0 
-		}
-	
-	method interpretaBienAliciaEnElPais(){
-		return self.interpretaBien(aliciaEnElPais)
-		}
-	
-	method cumpleLosRequisitosPdpalooza() {
-		return self.musicoConHabilidadMayorA70()&& self.compusoPorLoMenosUna() && self.interpretaBienAliciaEnElPais()
-		}
 }
 
 class DeGrupo inherits Musico {
@@ -168,6 +159,7 @@ paraLosArboles, justCrisantemo ],1000 ) {
 		return (super()*self.habilidadDeLaGuitarra()).min(100)
 	}
 
+	override method habilidadEnGrupo() {return 0}
 	method habilidadDeLaGuitarra() {
 		return guitarra.precio()
 	}
@@ -176,7 +168,7 @@ paraLosArboles, justCrisantemo ],1000 ) {
 		return true
 	}
 
-
+   
 	override method precioEspecial(unaPresentacion) {
 		if (unaPresentacion.fechaAnteriorASeptiembre()) {
 			return 0
