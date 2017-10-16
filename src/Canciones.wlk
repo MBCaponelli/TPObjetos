@@ -32,16 +32,14 @@ class Remix inherits Cancion {
 	}
 }
 class Mashup inherits Cancion {
-	constructor(unasCanciones)=super(unasCanciones.map({cancion => cancion.nombre()}), unasCanciones.map({cancion=>cancion.duracion()}), unasCanciones.map({cancion=>cancion.letra()})){
-		duracion=unasCanciones.map({cancion=>cancion.duracion()}).max()
-		nombre=unasCanciones.map({cancion=>cancion.nombre()}).fold("",{nombre1,bloque=>nombre1+" "+bloque}).drop(1)
-		letra=unasCanciones.map({cancion=>cancion.letra()}).fold("",{unaletra,unbloque=>unaletra+" "+unbloque}).drop(1)
+	constructor(unasCanciones)=super( unasCanciones.map({cancion=>cancion.nombre()}).fold("",{nombre1,bloque=>nombre1+" "+bloque}).drop(1), unasCanciones.max({cancion=>cancion.duracion()}).duracion(), unasCanciones.map({cancion=>cancion.letra()}).fold("",{unaletra,unbloque=>unaletra+" "+unbloque}).drop(1)){
+		
 	}
 	
 }
 
-object cisne inherits Cancion("Cisne", 312, "Hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar"){}
-object almaDeDiamante inherits Cancion("Alma de diamante",216,"Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante"){}
-object crisantemo inherits Cancion("Crisantemo",175,"Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo"){}
-object aliciaEnElPais inherits Cancion("Cancion de Alicia en el Pais",510,"Quién sabe Alicia, este país no estuvo hecho porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabó ese juego que te hacía feliz"){}
+object cisne inherits Cancion("Cisne", 312, "Hoy el viento se abriï¿½ quedï¿½ vacï¿½o el aire una vez mï¿½s y el manantial brotï¿½ y nadie estï¿½ aquï¿½ y puedo ver que solo estallan las hojas al brillar"){}
+object almaDeDiamante inherits Cancion("Alma de diamante",216,"Ven a mï¿½ con tu dulce luz alma de diamante. Y aunque el sol se nuble despuï¿½s sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asï¿½ con la humanidad alma de diamante"){}
+object crisantemo inherits Cancion("Crisantemo",175,"Tï¿½came junto a esta pared, yo quede por aquï¿½... cuando no hubo mï¿½s luz... quiero mirar a travï¿½s de mi piel... Crisantemo, que se abriï¿½... encuentra el camino hacia el cielo"){}
+object aliciaEnElPais inherits Cancion("Cancion de Alicia en el Pais",510,"Quiï¿½n sabe Alicia, este paï¿½s no estuvo hecho porque sï¿½. Te vas a ir, vas a salir pero te quedas, ï¿½dï¿½nde mï¿½s vas a ir? Y es que aquï¿½, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabï¿½ ese juego que te hacï¿½a feliz"){}
 
