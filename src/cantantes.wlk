@@ -8,15 +8,20 @@ class Musico {
 	var habilidadBase
 	var albums = [ ]
 	var precioBase = 0
-	
-	constructor(unaBanda, unaHabilidad, unosAlbums, unPrecioBase) {
-		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums precioBase=unPrecioBase
+	var categoria
+	constructor(unaBanda, unaHabilidad, unosAlbums, unPrecioBase,unaCategoria) {
+		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums precioBase=unPrecioBase categoria=unaCategoria
 	}
 
 	method cobrar(unaPresentacion) {
 		return self.precioBase() + self.precioEspecial(unaPresentacion)
 	}
 
+	method categoria() = categoria
+	method categoria(nuevaCategoria){
+		categoria=nuevaCategoria
+	}
+	
 	method precioBase() = precioBase
 	
 	method precioEspecial(unaPresentacion)
@@ -70,16 +75,49 @@ class Musico {
 		return self.albums().any({album => album.contieneAUnaCancion(unaCancion)})
 	}
 	
-	method interpretaBienSegunSuTipo(unaCancion)
+	method interpretaBienSegunSuTipo(unaCancion){
+		return categoria.interpretacion(unaCancion)
+	}
 	
 }
+
+class Larguero {
+	var cantidadDeSegundos
+	constructor(unaCantidadDeSegundos){
+		cantidadDeSegundos=unaCantidadDeSegundos
+	}
+	 method interpretacion(unaCancion) {
+		return unaCancion.duracion() > cantidadDeSegundos
+	}
+}
+
+class Palabrero {
+	var palabraElegida
+	
+	constructor(unaPalabraElegida){
+		palabraElegida=unaPalabraElegida
+	}
+   method interpretacion(unaCancion) {
+		return unaCancion.contieneUnaPalabra(palabraElegida)
+	}
+  
+}
+
+class Imparero {
+	 method interpretacion(unaCancion){
+		return unaCancion.esDeDuracionImpar()
+	}
+	
+}
+
 
 class DeGrupo inherits Musico {
 	var plusDeHabilidad
 
-	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase, unPlusDeHabilidad) =
-	super ( unaBanda , unaHabilidad , unosAlbums,unPrecioBase ) { 
+	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria, unPlusDeHabilidad) =
+	super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria) { 
 		plusDeHabilidad = unPlusDeHabilidad
+		
 	}
 
 	override method precioBase() = precioBase
@@ -96,10 +134,7 @@ class DeGrupo inherits Musico {
 		}
 	}
 
-	override method interpretaBienSegunSuTipo(unaCancion) {
-		return unaCancion.duracion() > 300
-	}
-
+	
 	override method precioEspecial(unaPresentacion) {
 		if (self.estaEnGrupo()) {
 			return 0
@@ -110,15 +145,11 @@ class DeGrupo inherits Musico {
 }
 
 class VocalistaPopular inherits Musico {
-	var palabraElegida
 	
-	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaPalabraElegida)=super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase){
+    var palabraElegida
+	
+	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaPalabraElegida,unaCategoria)=super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria){
 		palabraElegida=unaPalabraElegida
-	}
-	
-	method palabraElejida() = palabraElegida
-	method palabraElejida(nuevaPalabraElegida) {
-		palabraElegida = nuevaPalabraElegida
 	}
 
 	override method precioBase() = precioBase
@@ -131,12 +162,10 @@ class VocalistaPopular inherits Musico {
 		}
 	}
 
-	override method interpretaBienSegunSuTipo(unaCancion) {
+override method interpretaBienSegunSuTipo(unaCancion) {
 		return unaCancion.contieneUnaPalabra(palabraElegida)
 	}
-
 	
-
 	override method precioEspecial(unaPresentacion) {
 		if (unaPresentacion.esConcurrida()) {
 			return 100
@@ -146,8 +175,10 @@ class VocalistaPopular inherits Musico {
 	}
 }
 
+
+
 object luisAlberto inherits Musico ( solista , 8 , [
-paraLosArboles, justCrisantemo ],1000 ) {
+paraLosArboles, justCrisantemo ],1000,"") {
 	var guitarra = fender
 	
 
@@ -178,6 +209,7 @@ paraLosArboles, justCrisantemo ],1000 ) {
 	}
 	
 }
+
 
 object bandaX{
 	method sosGrupo(){

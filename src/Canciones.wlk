@@ -24,6 +24,9 @@ class Cancion {
 		return self.letra().words().size()
 	}
 	 
+	method esDeDuracionImpar() {
+		return self.duracion().odd()
+	} 
 }
 class Remix inherits Cancion {
 	constructor(unaCancion)=super(unaCancion.nombre(), unaCancion.duracion(), unaCancion.letra()){
@@ -32,8 +35,10 @@ class Remix inherits Cancion {
 	}
 }
 class Mashup inherits Cancion {
-	constructor(unasCanciones)=super( unasCanciones.map({cancion=>cancion.nombre()}).fold("",{nombre1,bloque=>nombre1+" "+bloque}).drop(1), unasCanciones.max({cancion=>cancion.duracion()}).duracion(), unasCanciones.map({cancion=>cancion.letra()}).fold("",{unaletra,unbloque=>unaletra+" "+unbloque}).drop(1)){
-		
+	constructor(unasCanciones)=super("",0 , ""){
+		nombre = unasCanciones.map({cancion=>cancion.nombre()}).fold("",{nombre1,bloque=>nombre1+" "+bloque}).drop(1)
+		duracion = unasCanciones.max({cancion=>cancion.duracion()}).duracion()
+		letra = unasCanciones.map({cancion=>cancion.letra()}).fold("",{unaletra,unbloque=>unaletra+" "+unbloque}).drop(1)
 	}
 	
 }
