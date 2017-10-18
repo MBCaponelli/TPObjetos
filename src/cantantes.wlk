@@ -78,6 +78,9 @@ class Musico {
 	method interpretaBienSegunSuTipo(unaCancion){
 		return categoria.interpretacion(unaCancion)
 	}
+	method interpretaBienDeLaListaDeCanciones(unasCanciones){
+		return unasCanciones.filter({cancion => self.interpretaBien(cancion)})
+	}
 	
 }
 
@@ -146,11 +149,7 @@ class DeGrupo inherits Musico {
 
 class VocalistaPopular inherits Musico {
 	
-    var palabraElegida
-	
-	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaPalabraElegida,unaCategoria)=super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria){
-		palabraElegida=unaPalabraElegida
-	}
+   
 
 	override method precioBase() = precioBase
 
@@ -162,9 +161,6 @@ class VocalistaPopular inherits Musico {
 		}
 	}
 
-override method interpretaBienSegunSuTipo(unaCancion) {
-		return unaCancion.contieneUnaPalabra(palabraElegida)
-	}
 	
 	override method precioEspecial(unaPresentacion) {
 		if (unaPresentacion.esConcurrida()) {

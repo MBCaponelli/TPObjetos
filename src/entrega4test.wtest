@@ -9,18 +9,51 @@ describe "entrega4"
 	const joaquin
 	const laFamilia
 	const especialLaFamilia
+	const kike
+	const corazonAmericano
+	const eres
+	const lucia
 	fixture {
 		laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
         especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
         joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50,new Larguero(300),50)
+        kike= new DeGrupo(bandaX,60,[],50,new Imparero(),20)
+        corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
+	    eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
+	    lucia= new VocalistaPopular(pimpinela,70,[],400,new Palabrero("familia"))
 	}
+	
 	test " Joaquín canta bien la canción “La Familia”" {
     joaquin.categoria(new Imparero())
 	assert.that(joaquin.interpretaBien(laFamilia))
-
-}
-   test "si Joaquín canta bien la canción “Cisne” por habilidad mayor a 60"{
+   }
+   
+   test " Joaquín canta mal la canción “Cisne” por par "{
    	joaquin.categoria(new Imparero())
-   	assert.that(joaquin.interpretaBien(cisne))
+   	joaquin.habilidadBase(0)
+   	assert.notThat(joaquin.interpretaBien(cisne))
+   }
+   
+   test "si kike canta bien las canciones “Corazon americano,alma de diamante,eres ,crisantemo” "{
+   	kike.categoria(new Palabrero("de"))
+   	kike.habilidadBase(0)
+   	assert.equals(kike.interpretaBienDeLaListaDeCanciones([corazonAmericano,cisne,almaDeDiamante,laFamilia,eres,aliciaEnElPais,crisantemo]).map({cancion =>cancion.nombre()}),["Corazón Americano","Alma de diamante","Eres","Crisantemo"])
+   }
+   
+   test "si joaquin canta bien las canciones “Cisne,La Familia,Cancion de Alicia en el Pais” "{
+   	joaquin.habilidadBase(0)
+   	
+   	assert.equals(joaquin.interpretaBienDeLaListaDeCanciones([corazonAmericano,cisne,almaDeDiamante,laFamilia,eres,aliciaEnElPais,crisantemo]).map({cancion =>cancion.nombre()}),["Cisne","La Familia","Cancion de Alicia en el Pais"])
+   }
+   
+   test "si joaquin canta bien las canciones “La Familia” porque su palabra es Xilofon "{
+   	joaquin.habilidadBase(0)
+   	joaquin.categoria(new Palabrero("xilofon"))
+   	assert.equals(joaquin.interpretaBienDeLaListaDeCanciones([corazonAmericano,cisne,almaDeDiamante,laFamilia,eres,aliciaEnElPais,crisantemo]).map({cancion =>cancion.nombre()}),["La Familia"])
+   }
+   test "si lucia canta bien las canciones “Eres y Crisantemo”  "{
+   	lucia.habilidadBase(0)
+   	lucia.categoria(new Imparero())
+   	assert.equals(lucia.interpretaBienDeLaListaDeCanciones([corazonAmericano,cisne,almaDeDiamante,laFamilia,eres,aliciaEnElPais,crisantemo]).map({cancion =>cancion.nombre()}),["Eres","Crisantemo"])
    }
 }
