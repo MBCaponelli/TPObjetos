@@ -49,6 +49,7 @@ class Presentacion {
 		fecha=nuevaFecha
 	}
 	
+	method masDeUnCantante()= self.cantantes().size()>1
 	method fechaAnteriorASeptiembre(){
 		return fecha.month()<9
 	}

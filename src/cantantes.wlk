@@ -7,14 +7,14 @@ class Musico {
 	var banda
 	var habilidadBase
 	var albums = [ ]
-	var precioBase = 0
 	var categoria
-	constructor(unaBanda, unaHabilidad, unosAlbums, unPrecioBase,unaCategoria) {
-		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums precioBase=unPrecioBase categoria=unaCategoria
+	var formaDeCobro
+	constructor(unaBanda, unaHabilidad, unosAlbums,unaCategoria,unaFormaDeCobro) {
+		banda = unaBanda habilidadBase = unaHabilidad albums = unosAlbums  categoria=unaCategoria formaDeCobro=unaFormaDeCobro
 	}
 
-	method cobrar(unaPresentacion) {
-		return self.precioBase() + self.precioEspecial(unaPresentacion)
+	method cobrar(unaPresentacion){
+		return formaDeCobro.cobroEspecial(unaPresentacion)
 	}
 
 	method categoria() = categoria
@@ -22,9 +22,9 @@ class Musico {
 		categoria=nuevaCategoria
 	}
 	
-	method precioBase() = precioBase
 	
-	method precioEspecial(unaPresentacion)
+	
+
 	
 	method habilidadBase() = habilidadBase
 	method habilidadBase(nuevaHabilidadBase){
@@ -84,6 +84,58 @@ class Musico {
 	
 }
 
+
+class CobroPorCantantes {
+	var cantidadDePesos
+	constructor(unaCantidadDePesos){
+	cantidadDePesos=unaCantidadDePesos	
+	}
+	 method cobroEspecial(unaPresentacion) {
+		if (unaPresentacion.masDeUnCantante()) {
+			return cantidadDePesos/2
+		} else {
+			
+			return  cantidadDePesos
+		}
+	}
+}
+
+class CobroPorCapacidad{
+	var cantidadDePesos
+	var cantidadDePersonas
+	
+	constructor(unaCantidadDePesos,unaCantidadDePersonas){
+		cantidadDePesos=unaCantidadDePesos
+		cantidadDePersonas=unaCantidadDePersonas
+	}
+	method cobroEspecial(unaPresentacion) {
+		if(unaPresentacion.capacidadEn(unaPresentacion.fecha())>cantidadDePersonas){
+			return cantidadDePesos
+		}else{
+			return cantidadDePesos-100
+		}
+	}
+}
+
+class CobroPorExpectativaInflacionaria {
+ var cantidadDePesos
+ var fecha
+ var porcentajeAdicional
+ constructor(unaCantidadDePesos,unaFecha,unPorcentajeAdicional){
+ 	cantidadDePesos = unaCantidadDePesos
+ 	fecha = unaFecha
+ 	porcentajeAdicional = unPorcentajeAdicional
+ }	
+ method fecha()=fecha
+ method cobrar(unaPresentacion){
+ if(self.fecha() < unaPresentacion.fecha()){
+ 	return cantidadDePesos
+ }else{
+ 	return cantidadDePesos+(cantidadDePesos*porcentajeAdicional)
+ }
+ }
+}
+
 class Larguero {
 	var cantidadDeSegundos
 	constructor(unaCantidadDeSegundos){
@@ -117,13 +169,13 @@ class Imparero {
 class DeGrupo inherits Musico {
 	var plusDeHabilidad
 
-	constructor(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria, unPlusDeHabilidad) =
-	super(unaBanda, unaHabilidad, unosAlbums,unPrecioBase,unaCategoria) { 
+	constructor(unaBanda, unaHabilidad, unosAlbums,unaCategoria,unaFormaDeCobro, unPlusDeHabilidad) =
+	super(unaBanda, unaHabilidad, unosAlbums,unaCategoria,unaFormaDeCobro) { 
 		plusDeHabilidad = unPlusDeHabilidad
 		
 	}
 
-	override method precioBase() = precioBase
+	
 
 	method plusdehabilidad(nuevoPlusDeHabilidad) {
 		plusDeHabilidad = nuevoPlusDeHabilidad
@@ -138,21 +190,14 @@ class DeGrupo inherits Musico {
 	}
 
 	
-	override method precioEspecial(unaPresentacion) {
-		if (self.estaEnGrupo()) {
-			return 0
-		} else {
-			return 50
-		}
-	}
+	
 }
 
 class VocalistaPopular inherits Musico {
 	
    
 
-	override method precioBase() = precioBase
-
+	
 	override method habilidadEnGrupo() {
 		if (self.estaEnGrupo()) {
 			return - 20
@@ -162,19 +207,13 @@ class VocalistaPopular inherits Musico {
 	}
 
 	
-	override method precioEspecial(unaPresentacion) {
-		if (unaPresentacion.esConcurrida()) {
-			return 100
-		} else {
-			return 0
-		}
-	}
+
 }
 
 
 
 object luisAlberto inherits Musico ( solista , 8 , [
-paraLosArboles, justCrisantemo ],1000,"") {
+paraLosArboles, justCrisantemo ],"","") {
 	var guitarra = fender
 	
 
@@ -196,11 +235,11 @@ paraLosArboles, justCrisantemo ],1000,"") {
 	}
 
    
-	override method precioEspecial(unaPresentacion) {
+	override method cobrar(unaPresentacion) {
 		if (unaPresentacion.fechaAnteriorASeptiembre()) {
-			return 0
+			return 1000
 		} else {
-			return 200
+			return 1200
 		}
 	}
 	

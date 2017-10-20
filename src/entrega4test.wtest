@@ -16,11 +16,11 @@ describe "entrega4"
 	fixture {
 		laFamilia= new Cancion("La Familia", 264, "Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
         especialLaFamilia= new Album("Especial La Familia",[laFamilia],new Date(17,06,1992),100000,89000)
-        joaquin = new DeGrupo(pimpinela,20,[especialLaFamilia],50,new Larguero(300),50)
-        kike= new DeGrupo(bandaX,60,[],50,new Imparero(),20)
+        joaquin = new DeGrupo(pimpinela,70,[especialLaFamilia],new Larguero(300),new CobroPorCantantes(100),10)
+        kike= new DeGrupo(bandaX,70,[],new Imparero(),new CobroPorExpectativaInflacionaria(4000,new Date(08,01,2018),0.5),20)
         corazonAmericano= new Cancion("Corazón Americano",154,"Canta corazón, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazón, como soñamos.")
 	    eres= new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Eres lo que le dio brillo al día a día, y así será por siempre, no cambiará, hasta el final de mis días.")
-	    lucia= new VocalistaPopular(pimpinela,70,[],400,new Palabrero("familia"))
+	    lucia= new VocalistaPopular(pimpinela,70,[],new Palabrero("familia"),new CobroPorCapacidad(500,5000))
 	}
 	
 	test " Joaquín canta bien la canción “La Familia”" {
@@ -55,5 +55,10 @@ describe "entrega4"
    	lucia.habilidadBase(0)
    	lucia.categoria(new Imparero())
    	assert.equals(lucia.interpretaBienDeLaListaDeCanciones([corazonAmericano,cisne,almaDeDiamante,laFamilia,eres,aliciaEnElPais,crisantemo]).map({cancion =>cancion.nombre()}),["Eres","Crisantemo"])
+   }
+   test "joaquin cobra 00 "{
+   pdpalooza.agregarCantante(joaquin)
+   pdpalooza.agregarCantante(kike)
+   assert.equals(joaquin.cobrar(pdpalooza),50)
    }
 }
