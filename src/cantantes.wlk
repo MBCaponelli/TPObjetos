@@ -2,6 +2,7 @@ import Canciones.*
 import guitarras.*
 import albums.*
 import presentaciones.*
+import bandas.*
 
 class Musico {
 	var banda
@@ -246,22 +247,6 @@ paraLosArboles, justCrisantemo ],"","") {
 }
 
 
-object bandaX{
-	method sosGrupo(){
-		return true
-	}
-}
 
-object pimpinela {
-	method sosGrupo() {
-		return true
-	}
-}
-
-object solista {
-	method sosGrupo() {
-		return false
-	}
-}
 
  

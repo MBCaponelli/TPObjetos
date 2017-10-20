@@ -19,6 +19,18 @@ object trastienda {
 		return self.capacidadEn(fecha) > 5000
 	}
 }
+object laCueva {
+	method capacidadEn(unDia)=14000
+	method esConcurrido(fecha) {
+		return self.capacidadEn(fecha) > 5000
+	}
+}
+object prixDAmi{
+	method capacidadEn(unDia)=150
+	method esConcurrido(fecha) {
+		return self.capacidadEn(fecha) > 5000
+	}
+}
 
 class Presentacion {
 	var cantantes
