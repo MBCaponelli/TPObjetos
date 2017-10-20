@@ -24,7 +24,9 @@ class Musico {
 	}
 	
 	
-	
+	method formaDeCobro(nuevaFormaDeCobro){
+		formaDeCobro = nuevaFormaDeCobro
+	}
 
 	
 	method habilidadBase() = habilidadBase
@@ -77,7 +79,7 @@ class Musico {
 	}
 	
 	method interpretaBienSegunSuTipo(unaCancion){
-		return categoria.interpretacion(unaCancion)
+		return self.categoria().interpretacion(unaCancion)
 	}
 	method interpretaBienDeLaListaDeCanciones(unasCanciones){
 		return unasCanciones.filter({cancion => self.interpretaBien(cancion)})
@@ -110,7 +112,7 @@ class CobroPorCapacidad{
 		cantidadDePersonas=unaCantidadDePersonas
 	}
 	method cobroEspecial(unaPresentacion) {
-		if(unaPresentacion.capacidadEn(unaPresentacion.fecha())>cantidadDePersonas){
+		if(unaPresentacion.capacidad()>cantidadDePersonas){
 			return cantidadDePesos
 		}else{
 			return cantidadDePesos-100
@@ -128,8 +130,8 @@ class CobroPorExpectativaInflacionaria {
  	porcentajeAdicional = unPorcentajeAdicional
  }	
  method fecha()=fecha
- method cobrar(unaPresentacion){
- if(self.fecha() < unaPresentacion.fecha()){
+ method cobroEspecial(unaPresentacion){
+ if(self.fecha() > unaPresentacion.fecha()){
  	return cantidadDePesos
  }else{
  	return cantidadDePesos+(cantidadDePesos*porcentajeAdicional)

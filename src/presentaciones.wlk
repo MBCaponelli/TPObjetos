@@ -45,6 +45,9 @@ class Presentacion {
 		return cantantes.sum({ cantante => cantante.cobrar(self) })
 	}
 
+	method capacidad() {
+		return lugar.capacidadEn(fecha) 
+	}
 	method esConcurrida() {
 		return lugar.esConcurrido(fecha)
 	}
@@ -65,6 +68,9 @@ class Presentacion {
 	method fechaAnteriorASeptiembre(){
 		return fecha.month()<9
 	}
+   method magia(){
+   	return cantantes.sum({cantante => cantante.habilidad()})
+   }
 }
 
 object pdpalooza inherits Presentacion([],lunaPark,new Date(15,12,2017)) {

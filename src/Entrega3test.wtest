@@ -105,5 +105,6 @@ describe "Entrega 3" {
                                     pdpalooza.agregarCantante(soledad)
                                  	assert.that(pdpalooza.cantantes().contains(soledad))
                                  }
+                                 
                                }
                                
